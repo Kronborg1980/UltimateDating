@@ -1,0 +1,1682 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ultimate Dating</title>
+<meta name="description" content="Break the ice. Literally. Every face on Ultimate starts frosted and melts as you talk.">
+<meta name="theme-color" content="#141A3A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ultimate">
+<meta property="og:title" content="Ultimate Dating">
+<meta property="og:description" content="Break the ice. Literally.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%23141A3A'/%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23CDE8FF'/%3E%3Cstop offset='.55' stop-color='%23FFB45C'/%3E%3Cstop offset='1' stop-color='%23FF5A8A'/%3E%3C/linearGradient%3E%3Cpath d='M12 4s-5.5 6-5.5 9.6a5.5 5.5 0 0 0 11 0C17.5 10 12 4 12 4z' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#141A3A; --night-2:#1B2250; --night-3:#252D62; --night-4:#323B78;
+  --line:rgba(205,232,255,.13); --line-2:rgba(205,232,255,.22);
+  --text:#F4F2FF; --muted:#AEB3DA; --faint:#7C83B5; --ink:#1A1433;
+  --frost:#CDE8FF; --glow:#FFB45C; --flush:#FF5A8A;
+  --warm:linear-gradient(90deg,#CDE8FF 0%,#FFB45C 52%,#FF5A8A 100%);
+  --display:'Gloock',Georgia,'Times New Roman',serif;
+  --ui:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --tabh:62px; --sb:env(safe-area-inset-bottom,0px); --st:env(safe-area-inset-top,0px);
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --frost-tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .88 0 0 0 0 .94 0 0 0 0 1 0 0 0 .7 -.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{background:var(--night);color:var(--text);font-family:var(--ui);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;min-height:100dvh}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:inherit;touch-action:manipulation}
+input,textarea{font:inherit;color:inherit;font-size:16px}
+img{display:block;max-width:100%}
+a{color:inherit}
+ul,ol{list-style:none}
+:focus-visible{outline:2px solid var(--frost);outline-offset:2px;border-radius:8px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.icon{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.img-gone{visibility:hidden}
+[hidden]{display:none!important}
+
+/* ---------- Frost: the signature ---------- */
+.fz{--w:0;--s:44px;--bf:.16;display:block;position:relative;overflow:hidden;isolation:isolate;flex:none;
+  background:radial-gradient(circle at 30% 28%,var(--a,#FFB45C) 0,transparent 64%),radial-gradient(circle at 74% 80%,var(--b,#7A6CFF) 0,transparent 68%),var(--night-3)}
+.fz[data-i]::before{content:attr(data-i);position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-size:calc(var(--s) * .44);color:rgba(255,255,255,.9);z-index:0}
+.fz>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;
+  filter:blur(calc((1 - var(--w)) * var(--s) * var(--bf))) saturate(calc(1 + (1 - var(--w)) * .5));
+  transform:scale(calc(1 + (1 - var(--w)) * .22));
+  transition:filter 1.8s var(--ease),transform 1.8s var(--ease)}
+.fz::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background-image:var(--frost-tex);background-color:rgba(214,234,255,.12);opacity:calc((1 - var(--w)) * .95);transition:opacity 1.8s var(--ease)}
+.ava{width:var(--s);height:var(--s);border-radius:50%}
+.drips{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden;border-radius:inherit}
+.drips i{position:absolute;top:-30%;width:2px;height:34%;border-radius:2px;background:linear-gradient(transparent,rgba(230,244,255,.95));opacity:0;animation:drip 1.7s ease-in forwards}
+@keyframes drip{0%{transform:translateY(0);opacity:0}12%{opacity:1}100%{transform:translateY(420%);opacity:0}}
+
+.meter{--w:0;position:relative;height:6px;border-radius:6px;background:rgba(205,232,255,.12);overflow:hidden}
+.meter>span{position:absolute;inset:0;background:var(--warm);clip-path:inset(0 calc((1 - var(--w)) * 100%) 0 0 round 6px);transition:clip-path 1.6s var(--ease)}
+
+/* ---------- Shared bits ---------- */
+.logo{width:26px;height:26px;flex:none}
+.wordmark{font-family:var(--display);font-size:27px;letter-spacing:-.01em;line-height:1}
+.brand{display:flex;align-items:center;gap:8px}
+.proto{font-size:12px;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:2px 9px;white-space:nowrap}
+.btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:600;font-size:16px;transition:transform .15s,background .2s,opacity .2s}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--flush);color:var(--ink)}
+.btn.primary:hover{background:#ff6d98}
+.btn.ghost{border:1px solid var(--line-2);color:var(--text)}
+.btn.ghost:hover{background:rgba(205,232,255,.06)}
+.btn.sm{min-height:38px;padding:0 16px;font-size:14px}
+.btn.wide{width:100%}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;color:var(--text)}
+.icon-btn:hover{background:rgba(205,232,255,.08)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--line-2);font-size:14px;color:var(--text);white-space:nowrap}
+.chip:hover{background:rgba(205,232,255,.07)}
+.chip[aria-pressed="true"]{background:var(--frost);color:var(--ink);border-color:var(--frost)}
+.field{display:block;width:100%;background:rgba(205,232,255,.06);border:1px solid var(--line-2);border-radius:14px;padding:13px 15px;outline:none;transition:border-color .2s,background .2s}
+.field:focus{border-color:var(--frost);background:rgba(205,232,255,.09)}
+textarea.field{resize:none;min-height:110px;line-height:1.45}
+.err{color:#FF9DB9;font-size:14px;min-height:20px}
+blockquote{margin:0}
+.seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:rgba(205,232,255,.07);border-radius:999px;padding:4px;gap:4px}
+.seg button{min-height:38px;border-radius:999px;font-size:14px;font-weight:500;text-align:center;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--frost);color:var(--ink)}
+
+/* ---------- Landing ---------- */
+#landing{min-height:100dvh;background:linear-gradient(180deg,#121838 0%,#141A3A 45%,#2A1E4A 100%)}
+.l-nav{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:calc(18px + var(--st)) 20px 18px}
+.l-hero{max-width:1180px;margin:0 auto;padding:24px 20px 72px;display:grid;gap:44px;align-items:center}
+.l-hero h1{font-family:var(--display);font-weight:400;font-size:clamp(52px,11vw,108px);line-height:.95;letter-spacing:-.02em;max-width:9ch;
+  filter:blur(16px);opacity:.25;transform:translateY(6px);transition:filter 1.6s var(--ease),opacity 1.6s var(--ease),transform 1.6s var(--ease)}
+.thawed .l-hero h1{filter:none;opacity:1;transform:none}
+.l-lede{font-size:clamp(18px,2.2vw,21px);line-height:1.5;color:#D9DBF5;max-width:34ch;margin-top:22px}
+.l-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.l-note{font-size:14px;color:var(--faint);margin-top:14px}
+.demo{position:relative;width:min(100%,380px);justify-self:center;background:var(--night-2);border:1px solid var(--line);border-radius:32px;padding:14px;box-shadow:0 40px 80px -30px rgba(5,6,25,.8),0 0 0 8px rgba(205,232,255,.03)}
+.demo-photo{--s:340px;--bf:.085;aspect-ratio:4/5;width:100%;max-height:min(440px,54dvh);border-radius:22px}
+.demo-over{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:16px;background:linear-gradient(transparent,rgba(12,14,40,.72))}
+.demo-over b{font-family:var(--display);font-weight:400;font-size:26px}
+.demo-over small{display:block;color:#E3E6FF;font-size:13px;margin:2px 0 10px}
+.demo-msgs{height:206px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:14px 4px 4px}
+.demo-msgs .bub{animation:pop .35s var(--ease) both}
+.l-sec{max-width:1180px;margin:0 auto;padding:72px 20px}
+.l-sec h2,.l-end h2{font-family:var(--display);font-weight:400;font-size:clamp(34px,5.5vw,56px);line-height:1.02;letter-spacing:-.01em;max-width:16ch}
+.l-sec .sub{color:var(--muted);font-size:18px;max-width:46ch;margin-top:14px}
+.steps{display:grid;gap:28px;margin-top:44px;counter-reset:s}
+.step{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:4px 14px}
+.step::before{content:counter(s);grid-row:span 2;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:20px;border:1px solid var(--line-2);color:var(--frost)}
+.step:nth-child(2)::before{color:#E8D4B6}.step:nth-child(3)::before{color:var(--glow)}.step:nth-child(4)::before{color:var(--flush);border-color:rgba(255,90,138,.5)}
+.step h3{font-size:19px;font-weight:600;padding-top:9px}
+.step p{color:var(--muted);max-width:40ch}
+.nc-pitch{display:grid;gap:40px;align-items:center}
+.clock{font-family:var(--display);font-size:clamp(84px,16vw,180px);line-height:.9;letter-spacing:-.03em;color:var(--glow)}
+.clock small{display:block;font-family:var(--ui);font-size:16px;letter-spacing:0;color:var(--muted);margin-top:10px}
+.mix{display:grid;gap:26px 40px;margin-top:40px}
+.mix div{border-top:1px solid var(--line);padding-top:16px}
+.mix h3{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:600}
+.mix h3 .icon{color:var(--frost)}
+.mix p{color:var(--muted);margin-top:6px;max-width:40ch}
+.l-end{text-align:center;padding:72px 20px calc(48px + var(--sb))}
+.l-end h2{margin:0 auto 26px;max-width:14ch}
+.l-foot{color:var(--faint);font-size:14px;margin-top:40px}
+@media(min-width:900px){
+  .l-hero{grid-template-columns:1.15fr .85fr;padding-top:48px;padding-bottom:110px}
+  .steps{grid-template-columns:repeat(4,1fr)}
+  .step{grid-template-columns:1fr}
+  .step::before{grid-row:auto;margin-bottom:10px}
+  .nc-pitch{grid-template-columns:1fr 1fr}
+  .mix{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ---------- Onboarding ---------- */
+#onboard{min-height:100dvh;display:grid;place-items:center;padding:calc(24px + var(--st)) 20px calc(24px + var(--sb))}
+.ob{width:min(100%,460px)}
+.ob-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px}
+.ob-prog{display:flex;gap:6px}.ob-prog i{width:28px;height:4px;border-radius:4px;background:var(--line-2)}.ob-prog i.on{background:var(--frost)}
+.ob h1{font-family:var(--display);font-weight:400;font-size:clamp(34px,8vw,44px);line-height:1.05;margin-bottom:10px}
+.ob p.lead{color:var(--muted);margin-bottom:26px}
+.ob label{display:block;font-size:14px;color:var(--muted);margin:18px 0 8px}
+.ob .row{display:grid;grid-template-columns:1fr 110px;gap:12px}
+.ob-actions{display:flex;flex-direction:column;gap:10px;margin-top:22px}
+.linkbtn{color:var(--muted);text-decoration:underline;text-underline-offset:3px;min-height:44px;align-self:center}
+
+/* ---------- App shell ---------- */
+#shell{display:grid;grid-template-columns:minmax(0,1fr);min-height:100dvh}
+.side,.rail{display:none}
+.main{min-width:0;padding-bottom:calc(var(--tabh) + var(--sb) + 16px)}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;height:calc(var(--tabh) + var(--sb));padding-bottom:var(--sb);display:grid;grid-template-columns:repeat(4,1fr);background:rgba(20,26,58,.88);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border-top:1px solid var(--line)}
+.tab{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:11px;font-weight:500;color:var(--faint)}
+.tab[aria-current="page"]{color:var(--text)}
+.tab[aria-current="page"] .icon{stroke-width:2.2}
+.badge{position:absolute;top:7px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--flush);color:var(--ink);font-size:11px;font-weight:700;display:grid;place-items:center}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--glow);box-shadow:0 0 0 0 rgba(255,180,92,.6);animation:live 2s infinite;flex:none}
+.tab .live-dot{position:absolute;top:10px;left:calc(50% + 9px)}
+@keyframes live{0%{box-shadow:0 0 0 0 rgba(255,180,92,.55)}70%{box-shadow:0 0 0 8px rgba(255,180,92,0)}100%{box-shadow:0 0 0 0 rgba(255,180,92,0)}}
+
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:10px;padding:calc(10px + var(--st)) 12px 10px 16px;background:rgba(20,26,58,.88);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.topbar .grow{flex:1}
+.topbar h1{font-family:var(--display);font-weight:400;font-size:28px;line-height:1.1}
+.topbar .desk{display:none}
+
+@media(min-width:900px){
+  #shell{grid-template-columns:88px minmax(0,640px);justify-content:center}
+  #shell[data-view="chats"]{grid-template-columns:88px minmax(0,1080px)}
+  .side{display:flex;flex-direction:column;align-items:center;gap:6px;position:sticky;top:0;height:100dvh;padding:18px 10px;border-right:1px solid var(--line)}
+  .tabbar,.topbar .mob{display:none}
+  .topbar .desk{display:block}
+  .topbar{padding:16px 20px}
+  .main{padding-bottom:40px;border-right:1px solid var(--line)}
+  .side .brand-btn{margin-bottom:18px;padding:8px;border-radius:14px}
+  .side .brand-btn .wordmark,.side .nav span,.side .post-btn span,.side .side-foot{display:none}
+  .side .nav{display:flex;flex-direction:column;gap:4px;width:100%}
+  .nav button{position:relative;display:flex;align-items:center;justify-content:center;gap:14px;height:52px;border-radius:999px;font-size:17px;color:var(--muted)}
+  .nav button:hover{background:rgba(205,232,255,.07);color:var(--text)}
+  .nav button[aria-current="page"]{color:var(--text);font-weight:600}
+  .nav button[aria-current="page"] .icon{stroke-width:2.2}
+  .nav .badge{top:6px;left:auto;right:12px}
+  .nav .live-dot{position:absolute;top:13px;left:40px}
+  .post-btn{margin-top:14px;width:52px;height:52px;border-radius:50%;background:var(--flush);color:var(--ink);display:grid;place-items:center;font-weight:600}
+  .side-me{margin-top:auto;display:flex;align-items:center;gap:10px;padding:8px;border-radius:999px}
+  .side-me:hover{background:rgba(205,232,255,.07)}
+  .side-me .who{display:none}
+}
+@media(min-width:1180px){
+  #shell{grid-template-columns:250px minmax(0,620px) 350px}
+  #shell[data-view="chats"]{grid-template-columns:250px minmax(0,1100px)}
+  #shell[data-view="chats"] .rail{display:none}
+  .side{align-items:stretch;padding:18px 14px}
+  .side .brand-btn{display:flex;align-items:center;gap:10px}
+  .side .brand-btn .wordmark{display:inline}
+  .side .nav span{display:inline}
+  .nav button{justify-content:flex-start;padding:0 18px}
+  .nav .live-dot{position:static}
+  .nav .badge{position:static;margin-left:auto}
+  .post-btn{width:100%;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px}
+  .side .post-btn span{display:inline}
+  .side .side-foot{display:block;font-size:13px;color:var(--faint);padding:10px 18px 0;line-height:1.4}
+  .side-me .who{display:block;line-height:1.2}
+  .side-me .who small{color:var(--muted)}
+  .rail{display:block;position:sticky;top:0;height:100dvh;overflow:auto;padding:16px 24px 40px}
+  .nc-banner{display:none!important}
+}
+
+/* ---------- Today row ---------- */
+.today{display:flex;gap:14px;overflow-x:auto;padding:14px 16px 12px;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.today::-webkit-scrollbar{display:none}
+.t-item{display:flex;flex-direction:column;align-items:center;gap:6px;width:72px;flex:none;font-size:12.5px;color:var(--muted)}
+.t-item span.nm{max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ring{position:relative;padding:3px;border-radius:50%;background:conic-gradient(from 210deg,var(--rc),color-mix(in srgb,var(--rc) 35%,#fff),var(--rc))}
+.ring>.fz{box-shadow:0 0 0 3px var(--night)}
+.ring.seen{background:rgba(205,232,255,.22)}
+.ring.add{background:none;border:1.5px dashed var(--line-2);padding:4.5px}
+.ring .plus{position:absolute;right:-1px;bottom:-1px;z-index:5;width:22px;height:22px;border-radius:50%;background:var(--flush);color:var(--ink);display:grid;place-items:center;box-shadow:0 0 0 3px var(--night)}
+.ring .plus .icon{width:14px;height:14px;stroke-width:2.6}
+
+/* ---------- Composer prompt ---------- */
+.prompt{display:flex;align-items:center;gap:12px;width:100%;padding:14px 16px;border-bottom:1px solid var(--line);color:var(--faint);font-size:17px}
+.prompt .fake{flex:1;text-align:left}
+.prompt .btn{color:var(--ink)}
+
+/* ---------- Feed ---------- */
+.feed>*{border-bottom:1px solid var(--line)}
+.post{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;padding:16px}
+.post>*{align-self:start}
+.post-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;line-height:1.3}
+.pname{font-weight:600;font-size:15.5px}
+.pname:hover{text-decoration:underline}
+.pmeta,.ptime{color:var(--faint);font-size:14px}
+.ptime{margin-left:auto}
+.take{font-size:18px;line-height:1.45;margin-top:4px;color:#F1EFFF;overflow-wrap:anywhere}
+.acts{display:flex;gap:4px;margin:8px 0 -8px -10px}
+.act{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 10px;border-radius:999px;color:var(--muted);font-size:14px}
+.act .icon{width:20px;height:20px}
+.act:hover{background:rgba(205,232,255,.07);color:var(--text)}
+.act.reply-act{color:var(--frost)}
+.act.on{color:var(--glow)}
+.act.on .icon{fill:currentColor}
+.act.heart.on{color:var(--flush)}
+.act.share{margin-left:auto}
+.pop{animation:pop .35s var(--ease)}
+@keyframes pop{0%{transform:scale(.7);opacity:0}100%{transform:none;opacity:1}}
+
+.poll{display:grid;gap:8px;margin-top:12px}
+.opt{position:relative;display:flex;justify-content:space-between;align-items:center;min-height:46px;padding:0 16px;border-radius:14px;border:1px solid var(--line-2);overflow:hidden;font-weight:500}
+.opt .bar{position:absolute;inset:0;background:rgba(205,232,255,.12);transform-origin:left;transform:scaleX(0);transition:transform .8s var(--ease);z-index:0}
+.opt span,.opt b{position:relative;z-index:1}
+.opt b{font-weight:600;opacity:0;transition:opacity .4s}
+.poll.voted .opt{pointer-events:none}
+.poll.voted .bar{transform:scaleX(var(--pct))}
+.poll.voted .opt b{opacity:1}
+.poll.voted .opt.mine{border-color:var(--glow)}
+.poll.voted .opt.mine .bar{background:rgba(255,180,92,.25)}
+.poll-note{font-size:14px;color:var(--faint);margin-top:8px}
+
+.moment{padding:14px 0 6px}
+.m-head{display:flex;align-items:center;gap:10px;padding:0 16px 10px}
+.m-head .post-head{flex:1}
+.m-media{position:relative;aspect-ratio:4/5;background:linear-gradient(150deg,var(--a),var(--b));overflow:hidden;user-select:none}
+.m-media img{width:100%;height:100%;object-fit:cover}
+@media(min-width:900px){.feed .m-media{aspect-ratio:auto;height:min(560px,62vh)}}
+.burst{position:absolute;left:50%;top:50%;width:110px;height:110px;margin:-55px 0 0 -55px;color:#fff;opacity:0;pointer-events:none;filter:drop-shadow(0 6px 20px rgba(0,0,0,.35))}
+.burst .icon{width:110px;height:110px;fill:var(--flush);stroke:none}
+.burst.go{animation:burst .9s var(--ease)}
+@keyframes burst{0%{opacity:0;transform:scale(.4)}20%{opacity:1;transform:scale(1.1)}45%{transform:scale(.95)}80%{opacity:1}100%{opacity:0;transform:scale(1.05) translateY(-20px)}}
+.moment .acts{margin:6px 6px 0}
+.m-cap{padding:4px 16px 8px;font-size:15px;color:#E3E3F7}
+.m-cap b{font-weight:600}
+
+.vouch{padding:18px 16px 18px 72px;position:relative}
+.vouch::before{content:"";position:absolute;left:37px;top:20px;bottom:20px;width:2px;border-radius:2px;background:linear-gradient(var(--glow),transparent)}
+.v-line{font-size:15px;color:var(--muted)}
+.v-line b,.v-line button{color:var(--text);font-weight:600}
+.v-line button:hover{text-decoration:underline}
+.v-quote{font-family:var(--display);font-size:22px;line-height:1.3;margin:8px 0 6px;color:#FBF3EA}
+.v-rel{font-size:14px;color:var(--faint)}
+
+.wing{padding:18px 16px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;align-items:start}
+.pair{display:flex;padding-top:2px}
+.pair>.fz:last-child{margin-left:-14px;box-shadow:0 0 0 3px var(--night)}
+.wing p{color:var(--muted)}
+.wing p b{color:var(--text);font-weight:600}
+.wing blockquote{grid-column:2;font-family:var(--display);font-size:21px;line-height:1.3;color:#FBF3EA}
+.wing .btn{grid-column:2;justify-self:start;margin-top:8px}
+
+.nc-banner{display:block;width:100%;text-align:left;padding:18px 16px;background:radial-gradient(120% 140% at 100% 0%,rgba(255,180,92,.22),transparent 55%),var(--night-2);border-bottom:1px solid var(--line)}
+.nc-b-top{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--glow);font-weight:500}
+.nc-b-q{display:block;font-family:var(--display);font-size:24px;line-height:1.2;margin:8px 0 12px;max-width:24ch}
+.nc-b-cta{display:inline-flex;align-items:center;min-height:38px;padding:0 16px;border-radius:999px;background:var(--glow);color:var(--ink);font-weight:600;font-size:14px}
+.feed-end{padding:40px 24px;text-align:center;color:var(--faint);border-bottom:0!important}
+.feed-end .icon{margin:0 auto 10px;color:var(--frost)}
+
+/* ---------- Rail ---------- */
+.r-card{border-radius:24px;padding:20px;background:radial-gradient(120% 120% at 100% 0%,rgba(255,180,92,.2),transparent 55%),var(--night-2);border:1px solid var(--line)}
+.r-card h3{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:400;font-size:26px}
+.r-card .q{font-family:var(--display);font-size:21px;line-height:1.25;margin:10px 0 6px}
+.r-card .cd{font-size:14px;color:var(--glow);margin-bottom:14px}
+.r-sec{margin-top:28px}
+.r-sec:first-child{margin-top:4px}
+.r-sec h4{font-size:15px;font-weight:600;margin-bottom:8px;color:var(--muted)}
+.r-row{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:center;width:100%;padding:10px;border-radius:16px}
+.r-row:hover{background:rgba(205,232,255,.06)}
+.r-row .fz{grid-row:span 2}
+.r-row b{font-weight:600;font-size:15px}
+.r-row small{color:var(--faint);font-size:13px;line-height:1.3}
+.r-foot{font-size:13px;color:var(--faint);margin-top:28px;line-height:1.5}
+
+/* ---------- Views ---------- */
+.v-sub{color:var(--muted);padding:12px 16px 4px;max-width:58ch}
+.empty{padding:56px 24px;text-align:center;color:var(--muted)}
+.empty h3{font-family:var(--display);font-weight:400;font-size:26px;color:var(--text);margin-bottom:8px}
+.empty .btn{margin-top:18px}
+
+/* Nightcap */
+.nc{padding:0 16px 24px;background:radial-gradient(90% 50% at 90% 0%,rgba(255,180,92,.12),transparent 70%)}
+.nc-live{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--glow);margin-top:16px}
+.nc-intro{color:var(--muted);margin-top:8px;max-width:46ch}
+.nc-q{font-family:var(--display);font-size:clamp(30px,7.2vw,42px);line-height:1.1;letter-spacing:-.01em;margin:22px 0 22px;max-width:18ch}
+.nc-q.compact{font-size:22px;line-height:1.2;margin:14px 0 14px;max-width:26ch;color:#E6E3FA}
+.nc-form .field{min-height:96px}
+.nc-form .row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:12px}
+.nc-form small{color:var(--faint)}
+.nc-mine{border-left:2px solid var(--glow);padding:2px 0 2px 12px;margin-bottom:18px;color:var(--muted);font-size:14px}
+.nc-mine b{display:block;color:var(--text);font-weight:500;font-size:16px}
+.deck{position:relative;height:min(280px,36dvh);min-height:220px;margin:6px 0 18px;touch-action:pan-y}
+.nc-card{--k:0;position:absolute;inset:0;border-radius:26px;padding:26px 24px;display:flex;flex-direction:column;justify-content:space-between;background:var(--night-3);border:1px solid var(--line-2);
+  transform:translateY(calc(var(--k) * 12px)) scale(calc(1 - var(--k) * .05));transition:transform .35s var(--ease),opacity .3s;box-shadow:0 24px 50px -24px rgba(5,6,25,.8);user-select:none;-webkit-user-select:none}
+.nc-card[data-k="0"]{cursor:grab}
+.nc-card.dragging{transition:none;cursor:grabbing}
+.nc-card .ans{font-family:var(--display);font-size:clamp(24px,5.6vw,30px);line-height:1.22}
+.nc-card .who{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+.nc-card .tint{position:absolute;inset:-1px;border-radius:26px;pointer-events:none;opacity:0;border:2px solid var(--flush);background:linear-gradient(135deg,rgba(255,90,138,.16),transparent 60%)}
+.nc-card .tint.pass{border-color:var(--frost);background:linear-gradient(225deg,rgba(205,232,255,.14),transparent 60%)}
+.deck-btns{display:flex;justify-content:center;align-items:center;gap:20px}
+.round{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-2);transition:transform .15s}
+.round:active{transform:scale(.92)}
+.round.heart{width:76px;height:76px;background:var(--flush);color:var(--ink);border:0}
+.round.heart .icon{width:30px;height:30px;fill:currentColor;stroke:none}
+.deck-count{text-align:center;color:var(--faint);font-size:14px;margin-top:12px}
+.wait{text-align:center;padding:30px 0 10px}
+.wait .big{font-family:var(--display);font-size:clamp(64px,18vw,96px);line-height:1;color:var(--glow);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.wait p{color:var(--muted);margin:10px auto 20px;max-width:34ch}
+.drop h2{font-family:var(--display);font-weight:400;font-size:clamp(40px,10vw,56px);line-height:1;margin:8px 0 6px}
+.drop>p{color:var(--muted);margin-bottom:20px}
+.match{display:grid;grid-template-columns:auto 1fr;gap:12px 14px;padding:18px;border-radius:24px;background:var(--night-2);border:1px solid var(--line);margin-bottom:12px;opacity:0;transform:translateY(16px) scale(.98);animation:rise .7s var(--ease) forwards}
+.match .fz{grid-row:span 2}
+.match h3{font-size:18px;font-weight:600;align-self:end}
+.match .theirs{font-family:var(--display);font-size:20px;line-height:1.25;color:#FBF3EA}
+.match .btn{grid-column:1/-1}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* Chats */
+.clist li{border-bottom:1px solid var(--line)}
+.crow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 14px;align-items:center;width:100%;padding:14px 16px}
+.crow:hover,.crow[aria-current="true"]{background:rgba(205,232,255,.05)}
+.crow .fz{grid-row:span 3}
+.crow b{font-weight:600;font-size:16px}
+.crow .t{color:var(--faint);font-size:13px;justify-self:end}
+.crow .last{grid-column:2/4;color:var(--muted);font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crow.unread .last{color:var(--text);font-weight:500}
+.crow .mrow{grid-column:2/4;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--faint);margin-top:4px}
+.crow .meter{flex:1;max-width:140px;height:4px}
+.dot-un{width:9px;height:9px;border-radius:50%;background:var(--flush);display:inline-block;margin-left:6px;vertical-align:middle}
+
+.chats-wrap{display:block}
+.convo{display:flex;flex-direction:column;background:var(--night)}
+.convo-head{display:flex;align-items:center;gap:6px;padding:calc(8px + var(--st)) 12px 10px 6px;border-bottom:1px solid var(--line);background:rgba(20,26,58,.92);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+.who-btn{display:flex;align-items:center;gap:12px;flex:1;min-width:0;padding:4px 6px;border-radius:16px}
+.who-btn:hover{background:rgba(205,232,255,.05)}
+.who-txt{flex:1;min-width:0}
+.who-txt b{display:block;font-size:17px;font-weight:600;line-height:1.2}
+.who-txt small{display:block;font-size:13px;color:var(--muted);margin-bottom:5px}
+.who-txt .meter{max-width:220px}
+.msgs{flex:1;min-height:0;overflow-y:auto;padding:18px 14px 12px;display:flex;flex-direction:column;gap:6px;overscroll-behavior:contain}
+.bub{max-width:80%;padding:10px 14px;border-radius:20px;font-size:16px;line-height:1.4;overflow-wrap:anywhere}
+.bub.them{align-self:flex-start;background:var(--night-3);border-bottom-left-radius:6px}
+.bub.me{align-self:flex-end;background:var(--bc,var(--frost));color:var(--ink);border-bottom-right-radius:6px}
+.bub+.bub.me,.bub+.bub.them{margin-top:0}
+.bub.them+.bub.me,.bub.me+.bub.them{margin-top:6px}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:14px 16px;border-radius:20px;border-bottom-left-radius:6px;background:var(--night-3)}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:blink 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+.ctx{align-self:center;width:min(100%,440px);margin:4px 0 14px;padding:14px 16px;border-radius:20px;border:1px dashed var(--line-2);text-align:left}
+.ctx-l{font-size:13px;color:var(--faint);margin-bottom:6px}
+.ctx blockquote{font-family:var(--display);font-size:19px;line-height:1.3;color:#FBF3EA}
+.ctx .ctx-q{font-size:14px;color:var(--muted);margin-bottom:10px}
+.ctx-pair{display:grid;gap:10px}
+.ctx-pair blockquote{font-size:17px}
+.ctx-pair span{display:block;font-family:var(--ui);font-size:12.5px;color:var(--faint);margin-bottom:2px}
+.ctx.inline{margin:12px 0 8px}
+.sys{align-self:center;font-size:13px;color:var(--faint);text-align:center;margin:8px 0;max-width:36ch}
+.melt{align-self:center;display:flex;align-items:center;gap:10px;margin:10px 0;padding:6px 14px 6px 6px;border-radius:999px;background:rgba(205,232,255,.07);font-size:13.5px;color:var(--muted)}
+.melt b{color:var(--text);font-weight:600}
+.reveal{align-self:center;width:min(100%,300px);margin:14px 0;text-align:center}
+.reveal .fz{--s:300px;--bf:.085;width:100%;aspect-ratio:4/5;border-radius:24px;box-shadow:0 0 0 1px var(--line),0 30px 60px -30px rgba(255,90,138,.5)}
+.reveal p{margin-top:12px;color:var(--muted);font-size:15px}
+.reveal p b{display:block;font-family:var(--display);font-weight:400;font-size:26px;color:var(--text)}
+.ideas{display:flex;gap:8px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none}
+.ideas::-webkit-scrollbar{display:none}
+.ideas:empty{display:none}
+.ideas .chip{flex:none}
+.ideas .chip.date{border-color:rgba(255,90,138,.55);color:#FFD0DE}
+.composer{display:flex;gap:8px;align-items:center;padding:10px 12px calc(10px + var(--sb));border-top:1px solid var(--line);background:var(--night)}
+.composer input{flex:1;min-width:0;min-height:46px;border-radius:999px;border:1px solid var(--line-2);background:rgba(205,232,255,.06);padding:0 18px;outline:none}
+.composer input:focus{border-color:var(--frost)}
+.send{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--flush);color:var(--ink);flex:none}
+.send .icon{width:21px;height:21px}
+.pane-empty{display:none}
+
+@media(max-width:899px){
+  .convo{position:fixed;left:0;right:0;top:var(--vvt,0px);height:var(--vvh,100dvh);z-index:40;transform:translateX(100%);visibility:hidden;transition:transform .34s var(--ease),visibility 0s .34s}
+  .convo.open{transform:none;visibility:visible;transition:transform .34s var(--ease),visibility 0s}
+}
+@media(min-width:900px){
+  .chats-wrap{display:grid;grid-template-columns:330px minmax(0,1fr);height:100dvh}
+  .chats-wrap .list-pane{overflow:auto;border-right:1px solid var(--line)}
+  .convo{height:100dvh}
+  .convo .back{display:none}
+  .pane-empty{display:grid;place-items:center;height:100dvh;text-align:center;padding:40px;color:var(--muted)}
+  .pane-empty h3{font-family:var(--display);font-weight:400;font-size:30px;color:var(--text);margin-bottom:8px}
+  #shell[data-view="chats"] .main{padding-bottom:0}
+}
+
+/* Me */
+.me-head{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:22px 16px 10px}
+.me-head h2{font-family:var(--display);font-weight:400;font-size:32px;line-height:1.05}
+.me-head p{color:var(--muted);font-size:15px}
+.me-photo{position:relative}
+.me-photo .cam{position:absolute;right:-2px;bottom:-2px;z-index:5;width:34px;height:34px;border-radius:50%;background:var(--frost);color:var(--ink);display:grid;place-items:center;box-shadow:0 0 0 3px var(--night)}
+.me-photo .cam .icon{width:18px;height:18px}
+.me-actions{display:flex;gap:10px;flex-wrap:wrap;padding:6px 16px 18px}
+.switch-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-top:1px solid var(--line)}
+.switch-row p{font-size:15px}
+.switch-row small{display:block;color:var(--faint);font-size:13.5px}
+.switch{position:relative;width:52px;height:32px;border-radius:999px;background:var(--night-4);flex:none;transition:background .2s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;transition:transform .25s var(--ease)}
+.switch[aria-checked="true"]{background:var(--flush)}
+.switch[aria-checked="true"]::after{transform:translateX(20px)}
+.tabs{display:flex;border-bottom:1px solid var(--line);border-top:1px solid var(--line);margin-top:8px}
+.tabs button{flex:1;min-height:50px;font-weight:500;color:var(--faint);position:relative;text-align:center}
+.tabs button[aria-selected="true"]{color:var(--text)}
+.tabs button[aria-selected="true"]::after{content:"";position:absolute;left:30%;right:30%;bottom:-1px;height:3px;border-radius:3px;background:var(--frost)}
+.settings{padding:8px 16px 30px}
+.settings h3{font-size:15px;color:var(--muted);font-weight:600;margin:24px 0 10px}
+.set-row{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:54px;border-bottom:1px solid var(--line);font-size:16px}
+.set-row small{color:var(--faint);font-size:14px}
+.set-row.danger{color:#FF9DB9}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.grid3 .cell{position:relative;aspect-ratio:4/5;overflow:hidden;background:linear-gradient(150deg,var(--a),var(--b));display:flex;align-items:flex-end;padding:8px;font-size:12.5px;line-height:1.3;color:#fff}
+.grid3 .cell img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.grid3 .cell span{position:relative;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+
+/* ---------- Sheet ---------- */
+.scrim{position:fixed;inset:0;z-index:60;background:rgba(8,10,30,.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:61;max-height:94dvh;overflow-y:auto;overscroll-behavior:contain;background:var(--night-2);border-radius:28px 28px 0 0;transform:translateY(105%);visibility:hidden;transition:transform .38s var(--ease),visibility 0s .38s;padding-bottom:calc(18px + var(--sb))}
+.sheet.open{transform:none;visibility:visible;transition:transform .38s var(--ease),visibility 0s}
+.sheet-top{position:sticky;top:0;z-index:6;display:flex;justify-content:flex-end;padding:8px 10px 0;background:linear-gradient(var(--night-2) 60%,transparent)}
+.grab{position:absolute;left:50%;top:8px;width:42px;height:5px;margin-left:-21px;border-radius:5px;background:var(--line-2)}
+.sheet-body{padding:0 20px}
+.sheet-body h2{font-family:var(--display);font-weight:400;font-size:30px;line-height:1.1;margin-bottom:14px}
+.quote{font-family:var(--display);font-size:20px;line-height:1.3;color:#FBF3EA;border-left:2px solid var(--glow);padding:2px 0 2px 14px;margin-bottom:16px}
+.hint{font-size:14px;color:var(--faint);margin:10px 0 18px}
+@media(min-width:900px){
+  .sheet{left:50%;right:auto;bottom:auto;top:50%;width:min(580px,92vw);max-height:88vh;border-radius:28px;transform:translate(-50%,-46%);opacity:0;visibility:hidden;transition:transform .3s var(--ease),opacity .25s,visibility 0s .3s}
+  .sheet.open{transform:translate(-50%,-50%);opacity:1;visibility:visible;transition:transform .3s var(--ease),opacity .25s,visibility 0s}
+  .grab{display:none}
+}
+/* Profile in sheet */
+.prof-photo{--s:420px;--bf:.085;width:100%;aspect-ratio:4/5;max-height:62dvh;border-radius:26px}
+.prof-photo .ov{position:absolute;left:0;right:0;bottom:0;z-index:4;padding:18px;background:linear-gradient(transparent,rgba(10,12,36,.8))}
+.prof-photo .ov h2{font-family:var(--display);font-weight:400;font-size:34px;line-height:1;margin:0}
+.prof-photo .ov p{color:#E3E6FF;font-size:15px;margin:4px 0 12px}
+.prof-photo .ov small{display:block;font-size:13px;color:#E3E6FF;margin-top:8px}
+.prof-bio{font-size:18px;line-height:1.5;margin:18px 0 14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tags li{padding:6px 12px;border-radius:999px;background:rgba(205,232,255,.08);font-size:14px;color:#DCE6FF}
+.prof-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.prof h3{font-size:15px;font-weight:600;color:var(--muted);margin:28px 0 8px}
+.p-take{padding:12px 0;border-bottom:1px solid var(--line)}
+.p-take p{font-size:17px;line-height:1.45}
+.p-take .act{margin-top:4px;margin-left:-10px}
+.p-vouch{padding:12px 0;border-bottom:1px solid var(--line)}
+.p-vouch blockquote{font-family:var(--display);font-size:20px;line-height:1.3;color:#FBF3EA}
+.p-vouch p{font-size:14px;color:var(--faint);margin-top:4px}
+.p-moments{margin:0 -20px}
+
+/* ---------- Story viewer ---------- */
+.story{position:fixed;inset:0;z-index:80;background:#05061A;display:flex;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s}
+.story.open{opacity:1;visibility:visible;transition:opacity .25s,visibility 0s}
+.st-frame{position:relative;width:100%;max-width:480px;height:100%;overflow:hidden;background:linear-gradient(160deg,var(--a,#323B78),var(--b,#141A3A))}
+@media(min-width:600px){.st-frame{height:min(100%,860px);align-self:center;border-radius:24px}}
+.st-media{position:absolute;inset:0}
+.st-media img{width:100%;height:100%;object-fit:cover}
+.st-media::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.45),transparent 22%,transparent 60%,rgba(0,0,0,.6))}
+.st-cap{position:absolute;left:20px;right:20px;bottom:calc(96px + var(--sb));z-index:3;font-family:var(--display);font-size:28px;line-height:1.2;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+.st-bars{position:absolute;top:calc(10px + var(--st));left:10px;right:10px;z-index:4;display:flex;gap:4px}
+.st-bars i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.3);overflow:hidden}
+.st-bars i b{display:block;height:100%;background:#fff;width:0}
+.st-head{position:absolute;top:calc(22px + var(--st));left:12px;right:6px;z-index:4;display:flex;align-items:center;gap:10px}
+.st-head .nm{font-weight:600}
+.st-head small{color:rgba(255,255,255,.75);font-size:13px}
+.st-head .grow{flex:1}
+.st-tap{position:absolute;top:80px;bottom:90px;z-index:2;width:50%}
+.st-tap.l{left:0}.st-tap.r{right:0}
+.st-reply{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;gap:8px;padding:12px 12px calc(14px + var(--sb))}
+.st-reply input{flex:1;min-width:0;min-height:48px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.25);padding:0 18px;color:#fff;outline:none}
+.st-reply input::placeholder{color:rgba(255,255,255,.8)}
+.st-reply .send{width:48px;height:48px}
+
+/* ---------- Toast ---------- */
+.toast{position:fixed;left:50%;bottom:calc(var(--tabh) + var(--sb) + 14px);z-index:90;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--text);color:var(--ink);padding:12px 18px;border-radius:999px;font-weight:500;font-size:15px;transition:transform .3s var(--ease),opacity .3s;max-width:calc(100vw - 32px);text-align:center;box-shadow:0 18px 40px -16px rgba(0,0,0,.6)}
+.toast.show{transform:translate(-50%,0);opacity:1}
+@media(min-width:900px){.toast{bottom:28px}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .l-hero h1{filter:none;opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="lgd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CDE8FF"/><stop offset=".55" stop-color="#FFB45C"/><stop offset="1" stop-color="#FF5A8A"/></linearGradient></defs></svg>
+
+<!-- ============ LANDING ============ -->
+<div id="landing" hidden>
+  <header class="l-nav">
+    <div class="brand"><span data-logo></span><span class="wordmark">ultimate</span></div>
+    <button class="btn ghost sm" data-action="enter">Try the prototype</button>
+  </header>
+  <section class="l-hero">
+    <div>
+      <h1>Break the ice. Literally.</h1>
+      <p class="l-lede">Every face on Ultimate starts frosted. Each real back-and-forth melts a little more, so you fall for how someone thinks before you see how they look.</p>
+      <div class="l-cta">
+        <button class="btn primary" data-action="enter">Try the prototype</button>
+        <a class="btn ghost" href="#how">How it works</a>
+      </div>
+      <p class="l-note">Interactive demo. Nothing you type leaves your browser.</p>
+    </div>
+    <div class="demo" aria-label="Demo of a conversation melting the frost on a profile photo">
+      <div class="fz demo-photo" id="heroPhoto" data-i="E" style="--a:#FF9A6B;--b:#9B6BFF">
+        <img alt="" data-src-list>
+        <div class="demo-over"><b>Ella, 29</b><small id="heroLabel">Frosted. Say something real.</small><div class="meter" id="heroMeter"><span></span></div></div>
+      </div>
+      <div class="demo-msgs" id="heroMsgs" aria-live="off"></div>
+    </div>
+  </section>
+
+  <section class="l-sec" id="how">
+    <h2>Words first. Faces when you've earned them.</h2>
+    <p class="sub">No swiping on photos. No cold "hey". Here's how a match happens on Ultimate.</p>
+    <ol class="steps">
+      <li class="step"><h3>Post a take</h3><p>Opinions, questions, small confessions. What you say is the first thing people see.</p></li>
+      <li class="step"><h3>Reply to start</h3><p>Every conversation begins with an answer to something they actually said.</p></li>
+      <li class="step"><h3>Melt the frost</h3><p>Photos sharpen as you talk. You both watch the thaw happen in real time.</p></li>
+      <li class="step"><h3>Meet up</h3><p>Once the ice is broken, Ultimate suggests a first date built from what you both posted.</p></li>
+    </ol>
+  </section>
+
+  <section class="l-sec nc-pitch">
+    <div class="clock">21:00<small>Every night, everyone nearby</small></div>
+    <div>
+      <h2>Nightcap: one question, swipe on answers.</h2>
+      <p class="sub">At 21:00 a single question goes out to everyone in your city. You swipe on what people said, not how they look. At 22:00 the mutual hearts drop, and the conversation starts from both your answers.</p>
+    </div>
+  </section>
+
+  <section class="l-sec">
+    <h2>Your whole life, not just your best angle.</h2>
+    <div class="mix">
+      <div><h3><span data-icon="sun"></span>Today</h3><p>Short moments that vanish after 24 hours. Reply to one and you've started a conversation.</p></div>
+      <div><h3><span data-icon="image"></span>Moments</h3><p>Photos of your life, not your face. Bread, boats, bad pottery. They stay on your profile.</p></div>
+      <div><h3><span data-icon="quote"></span>Vouches</h3><p>Friends write one line about you. Nobody sells you better than the friend who helped you move.</p></div>
+      <div><h3><span data-icon="friends"></span>Wingmates</h3><p>Friends on Ultimate can suggest who you'd click with. Good friends have good instincts.</p></div>
+    </div>
+  </section>
+
+  <section class="l-end">
+    <h2>See it for yourself.</h2>
+    <button class="btn primary" data-action="enter">Try the prototype</button>
+    <p class="l-foot">ultimatedating.com. Prototype with demo profiles and placeholder photos.</p>
+  </section>
+</div>
+
+<!-- ============ ONBOARDING ============ -->
+<div id="onboard" hidden></div>
+
+<!-- ============ APP ============ -->
+<div id="shell" hidden>
+  <aside class="side" id="side"></aside>
+  <main class="main" id="main"></main>
+  <aside class="rail" id="rail"></aside>
+  <nav class="tabbar" id="tabbar" aria-label="Main"></nav>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Details"></div>
+<div class="story" id="story" role="dialog" aria-modal="true" aria-label="Today"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="fileIn" accept="image/*" hidden>
+
+<script>
+'use strict';
+/* =========================================================
+   Ultimate Dating prototype. Single file, no build step.
+   Swap the DATA section for a real backend (Firebase etc).
+   ========================================================= */
+const KEY = 'ultimate-demo-v1';
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isDesk = () => matchMedia('(min-width: 900px)').matches;
+
+/* ---------- Images (with graceful fallbacks) ---------- */
+const UNS = (id, w = 600, h = 750) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&crop=faces&w=${w}&h=${h}&q=70`;
+const UNSC = (id, w = 720, h = 900) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&h=${h}&q=70`;
+const RU = path => `https://randomuser.me/api/portraits/${path}.jpg`;
+const PIC = (seed, w = 720, h = 900) => `https://picsum.photos/seed/ultimate-${seed}/${w}/${h}`;
+function img(list, alt = '', extra = '') {
+  const l = list.filter(Boolean);
+  return `<img src="${l[0]}" data-alts="${l.slice(1).join('|')}" alt="${esc(alt)}" loading="lazy" decoding="async" onerror="imgFail(this)" ${extra}>`;
+}
+window.imgFail = el => {
+  const a = (el.dataset.alts || '').split('|').filter(Boolean);
+  if (a.length) { el.dataset.alts = a.slice(1).join('|'); el.src = a[0]; }
+  else { el.onerror = null; el.classList.add('img-gone'); }
+};
+
+/* ---------- Icons ---------- */
+const svg = d => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${d}</svg>`;
+const I = {
+  home: svg('<path d="M3.5 10.2 12 3.5l8.5 6.7V19a1.5 1.5 0 0 1-1.5 1.5h-4.2v-6h-5.6v6H5A1.5 1.5 0 0 1 3.5 19z"/>'),
+  nightcap: svg('<path d="M4.5 4.5h15c0 4.2-3.4 7.2-7.5 7.2s-7.5-3-7.5-7.2z"/><path d="M12 11.7v7.6M8 20.2h8"/>'),
+  chats: svg('<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4.2A1.5 1.5 0 0 1 4 14.5z"/>'),
+  me: svg('<circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5c1.2-3.8 4-5.7 7.5-5.7s6.3 1.9 7.5 5.7"/>'),
+  plus: svg('<path d="M12 5v14M5 12h14"/>'),
+  reply: svg('<path d="M9.5 8.5V5L3 11.5 9.5 18v-3.6c4.6 0 7.9 1.4 10.5 4.6-.9-5.2-4.2-10-10.5-10.5z"/>'),
+  spark: svg('<path d="M12 3.5l1.9 6.6 6.6 1.9-6.6 1.9L12 20.5l-1.9-6.6L3.5 12l6.6-1.9z"/>'),
+  heart: svg('<path d="M12 20s-7.5-4.6-9-9.6A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 9 3.8C19.5 15.4 12 20 12 20z"/>'),
+  share: svg('<path d="M12 15V3.5M7.5 8 12 3.5 16.5 8"/><path d="M5 12v7.5A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V12"/>'),
+  close: svg('<path d="M6 6l12 12M18 6 6 18"/>'),
+  send: svg('<path d="M4 12 20 4l-5.5 16-3-7z"/><path d="M11.5 13 20 4"/>'),
+  back: svg('<path d="M15 5l-7 7 7 7"/>'),
+  camera: svg('<path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2.3L9.5 4.5h5L16.2 7h2.3A1.5 1.5 0 0 1 20 8.5v10a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5z"/><circle cx="12" cy="13" r="3.5"/>'),
+  flake: svg('<path d="M12 3v18M4.2 7.5l15.6 9M4.2 16.5l15.6-9M9.5 4.5 12 7l2.5-2.5M9.5 19.5 12 17l2.5 2.5"/>'),
+  friends: svg('<circle cx="9" cy="9" r="3.2"/><circle cx="16.5" cy="10" r="2.6"/><path d="M3.5 19.5c.9-3 3-4.6 5.5-4.6s4.6 1.6 5.5 4.6M14.5 15.2c2.6-.4 4.8.9 6 4.3"/>'),
+  sun: svg('<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/>'),
+  image: svg('<rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m20.5 16-5-5-8.5 8.5"/>'),
+  quote: svg('<path d="M9.5 7.5C6.5 8.3 5 10.6 5 13.5V17h4.5v-4.5H7M19 7.5c-3 .8-4.5 3.1-4.5 6V17H19v-4.5h-2.5"/>'),
+  pass: svg('<path d="M7 7l10 10M17 7 7 17"/>'),
+};
+const LOGO = `<svg class="logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5S5 10.2 5 14.6a7 7 0 0 0 14 0C19 10.2 12 2.5 12 2.5z" fill="url(#lgd)"/></svg>`;
+
+/* =========================================================
+   DATA (demo profiles)
+   ========================================================= */
+const NC_Q = "What's a small thing that instantly makes you like someone?";
+const P = {
+  ella: { name:'Ella', age:29, km:2, g:'w', job:'Ceramicist', face:'1494790108377-be9c29b29330', ru:'women/44', a:'#FF9A6B', b:'#9B6BFF',
+    bio:'I make bowls nobody needs and sing songs nobody requested. Looking for someone who walks slowly on purpose.',
+    tags:['Ceramics','Karaoke','Long walks','Cardamom buns'],
+    takes:['Unpopular opinion: the best part of a date is the walk afterwards, when nobody wants to say goodnight first.','Green flag: you know your local baker by name.'],
+    today:[{u:'1495474472287-4d71bcdd2085',cap:'Coffee before clay. Today we make plates.',ago:'3h'},{seed:'ella-kiln',cap:'Kiln is loaded. Fingers crossed nothing explodes.',ago:'40m'}],
+    moments:[{u:'1495474472287-4d71bcdd2085',cap:'Coffee before clay.'},{seed:'ella-m2',cap:'The wonky one is my favourite.'},{seed:'ella-m3',cap:'Studio Sunday.'}],
+    vouches:[{by:'Nora',rel:'Best friend since school',text:'She remembers your coffee order after one time and turns up with it without asking.'}],
+    replies:["Okay, that's a better answer than I expected.","Wait, I need the full story behind that.","Honestly? Same. Nobody ever admits that out loud.","You're making a very strong case for yourself right now.","Fine. You get to see the bowl that came out wonky. It's my favourite."],
+    reveal:"There. Frost's gone. Hi.", ideas:['Slow walk to the bakery on Saturday?','Karaoke on Thursday? I pick your song.'],
+    nc:{text:"When they're kind to a waiter who just got their order wrong.", back:true} },
+  malik: { name:'Malik', age:30, km:4, g:'m', job:'Sound engineer', face:'1507003211169-0a1dd7228f2d', ru:'men/32', a:'#4FD1C5', b:'#3B5BDB',
+    bio:"Fixing other people's audio, ignoring my own voicemail. I will make you a playlist by the third message.",
+    tags:['Live music','Pizza politics','Vinyl','Night buses'],
+    takes:['If you put pineapple on pizza I need to know before this goes any further. (I\'m for it.)'],
+    poll:{q:'Settle this for me. Perfect first date:', o:['Sunrise hike','Sunset wine'], v:[214,356]},
+    today:[{u:'1493225457124-a3eb161ffa5f',cap:'Mixed this one last night. My ears are still ringing.',ago:'5h'}],
+    moments:[{u:'1493225457124-a3eb161ffa5f',cap:'Front of house, back of the room.'},{seed:'malik-m2',cap:'Crate digging.'},{seed:'malik-m3',cap:'Sunday soundcheck.'}],
+    vouches:[{by:'Lea',rel:'Bandmate, ex-roommate',text:'Will fix your speaker, your playlist and your mood, in that order.'}],
+    replies:['Respect. You clearly have taste.','What are you listening to right now? Be honest.',"That's a listen-at-1:42 moment if I've ever heard one.","I'm making you a playlist. You'll pretend to like all of it.",'You are suspiciously easy to talk to.'],
+    reveal:'Alright, ice broken. Hi.', ideas:['Wood-fired pizza on Friday?','Record shop crawl this weekend?'],
+    nc:{text:"When they send a song and say 'listen to 1:42'.", back:true} },
+  sofie: { name:'Sofie', age:27, km:1, g:'w', job:'Nurse, night shifts', face:'1438761681033-6461ffad8d80', ru:'women/65', a:'#FF7EB6', b:'#FFC46B',
+    bio:'Calm in a crisis, chaotic at board games. My love language is bringing you snacks at exactly the right moment.',
+    tags:['Board games','Night owls','Cooking','Sea swims'],
+    takes:['Looking for someone to be ruthlessly competitive with at board games and then cook dinner together like nothing happened.'],
+    today:[{u:'1470071459604-3b5ec3a7fe05',cap:'Post-shift walk. Best part of the job.',ago:'7h'}],
+    moments:[{u:'1470071459604-3b5ec3a7fe05',cap:'6am, after twelve hours.'},{seed:'sofie-m2',cap:'Undefeated. For now.'},{seed:'sofie-m3',cap:'Sea swim season never ends.'}],
+    vouches:[{by:'Clara',rel:'Works the same ward',text:'Calm in an emergency. Absolutely unbearable at Monopoly.'}],
+    replies:['Bold. I like bold.','Night-shift brain says yes. Day brain also says yes.',"I'm keeping score, just so you know.",'Okay, that one made me laugh in the break room.',"You're winning. Don't get comfortable."],
+    reveal:"Frost's gone. Now you know who's going to beat you at Catan.", ideas:['Board game café after my shift?','Cook-off at mine, loser does dishes?'],
+    nc:{text:'Remembering something tiny I said three weeks ago.', back:true} },
+  theo: { name:'Theo', age:32, km:6, g:'m', job:'Architect', face:'1500648767791-00dcc994a43e', ru:'men/46', a:'#7CC6FF', b:'#5B4BDB',
+    bio:'I notice doorways. Looking for someone who will let me point at buildings and say "look at that cornice".',
+    tags:['Buildings','Voice notes','Cabins','Old cinemas'],
+    takes:['Hot take: voice notes are a love language. Two minutes minimum.'],
+    today:[{u:'1519681393784-d120267933ba',cap:'Sketching a cabin in my head again.',ago:'1h'}],
+    moments:[{u:'1519681393784-d120267933ba',cap:'Somewhere to build one day.'},{seed:'theo-m2',cap:'Look at that cornice.'},{seed:'theo-m3',cap:'Model making at 1am.'}],
+    vouches:[{by:'Jens',rel:'Friend since uni',text:"He'll send you a four-minute voice note, and you'll be glad he did."}],
+    replies:["I'd send a voice note reply but I'll restrain myself.",'Sketching something while we talk, don\'t mind me.',"That's a very good point, annoyingly.","Tell me your favourite building and I'll tell you everything about you.",'You\'re fun. Noted.'],
+    reveal:'Hi. This is my face. It\'s mostly eyebrows.', ideas:['Architecture walk on Sunday?','Coffee at the new library?'],
+    nc:{text:'If they laugh at their own joke before they finish it.', back:false} },
+  freya: { name:'Freya', age:28, km:3, g:'w', job:'Baker', face:'1534528741775-53994a69daeb', ru:'women/68', a:'#FFC46B', b:'#FF6B6B',
+    bio:'Up at 4am, flour everywhere, very honest texts at 4:05. I will drive anywhere for good bread.',
+    tags:['Sourdough','Road trips','Early mornings','Cinnamon knots'],
+    takes:["I will drive 40 minutes for good bread. The question is whether you'll come with me."],
+    today:[{u:'1509440159596-0249088772ff',cap:"Saturday's batch. Two left if you're quick.",ago:'2h'}],
+    moments:[{u:'1509440159596-0249088772ff',cap:"Saturday's batch. Two left if you're quick."},{seed:'freya-m2',cap:'Road trip for rye.'},{seed:'freya-m3',cap:'4:05am.'}],
+    vouches:[{by:'Mads',rel:'Brother',text:'She once drove two hours to bring me soup. I had a mild cold.'}],
+    replies:["Bread opinions first. What's your loaf?","I'm up at 4 every day, so expect very honest texts at 4:05.","Okay, you've earned a cinnamon knot.",'Do you actually like long drives or are you being polite?',"I'm smiling at my phone in front of the oven. Embarrassing."],
+    reveal:'There I am. Flour on my cheek, as usual.', ideas:['Road trip for bread this weekend?','Early bakery breakfast, 7am?'],
+    nc:{text:'Reading the menu out loud in funny voices.', back:true} },
+  noah: { name:'Noah', age:33, km:5, g:'m', job:'Teacher', face:'1506794778202-cad84cf45f1d', ru:'men/22', a:'#8BD17C', b:'#2F9E8F',
+    bio:'I teach 14-year-olds, so nothing you say will shock me. My sourdough starter is called Gary.',
+    tags:['Sourdough','Pub quizzes','Hiking','Bad puns'],
+    takes:['My sourdough starter is officially older than my last relationship. His name is Gary.'],
+    today:[{u:'1506905925346-21bda4d32df4',cap:'Took Gary on a hike. He did not enjoy it.',ago:'4h'}],
+    moments:[{u:'1506905925346-21bda4d32df4',cap:'Took Gary on a hike.'},{seed:'noah-m2',cap:'Quiz night champions (once).'},{seed:'noah-m3',cap:'Marking. Send help.'}],
+    vouches:[{by:'Kasper',rel:'Friend from football',text:"Noah's the one who stays to help clean up after the party."}],
+    replies:['Gary sends his regards.',"I teach teenagers, so you're already the most interesting person I've spoken to today.",'Ha! Okay. Strong answer.',"You'd get on with Gary. He's also a bit sour at first.",'Genuinely enjoying this. Unusual for a Tuesday.'],
+    reveal:'Ice officially broken. Hello.', ideas:['Picnic? Gary can come.','Pub quiz on Wednesday?'],
+    nc:{text:"Asking a follow-up question. That's it. That's the whole thing.", back:true} },
+  amara: { name:'Amara', age:29, km:2, g:'w', job:'Product designer', face:'1544005313-94ddf0286df2', ru:'women/12', a:'#C77DFF', b:'#FF7E9E',
+    bio:'I own a label maker and I plan excellent trips. You just have to show up with snacks.',
+    tags:['Travel planning','Flea markets','Typography','Label makers'],
+    takes:["Dating bios are cover letters, so here's mine: punctual, owns a label maker, will plan the trip."],
+    today:[{u:'1501785888041-af3ef285b470',cap:'Out of office. For real this time.',ago:'6h'}],
+    moments:[{u:'1501785888041-af3ef285b470',cap:'Out of office.'},{seed:'amara-m2',cap:'Flea market finds.'},{seed:'amara-m3',cap:'The label maker, labelled.'}],
+    vouches:[{by:'Rasmus',rel:'Travel buddy',text:'Plans the best trips. You only have to bring snacks.'}],
+    replies:["I'm adding that to a spreadsheet. A nice one.","Follow-up, because I'm thorough: what's your most organised drawer?","Okay, that's charming. Annoyingly.","I've planned three hypothetical trips with you already.",'You pass. With colour coding.'],
+    reveal:'Hello, properly. Frost removed, labelled and filed.', ideas:['I plan the whole date, itinerary included?','Flea market on Sunday?'],
+    nc:{text:'When they hold the door and then do a dramatic bow about it.', back:false} },
+  lucas: { name:'Lucas', age:30, km:7, g:'m', job:'Chef', face:'1539571696357-5a69c17a67c6', ru:'men/75', a:'#FF8C42', b:'#C2410C',
+    bio:'I cook for people I like. Fair warning, I will ask about your food opinions very early.',
+    tags:['Cooking','Street food','Markets','Bowling'],
+    takes:['I cook for people I like. Fair warning: I will ask about your food opinions very early.'],
+    today:[{u:'1504674900247-0877df9cc836',cap:'Staff meal. Best meal of the week, every week.',ago:'1h'}],
+    moments:[{u:'1504674900247-0877df9cc836',cap:'Staff meal.'},{seed:'lucas-m2',cap:'Market run.'},{seed:'lucas-m3',cap:'Too competitive at bowling.'}],
+    vouches:[{by:'Nina',rel:'Sous chef',text:'Feeds everyone and asks nothing back. Slightly too competitive at bowling.'}],
+    replies:["Important question: what's the last thing you cooked?",'Correct. I can work with that.',"I'm already planning what I'd make you.","You'd be surprised what I can do with a lemon.",'Good taste in conversation too.'],
+    reveal:"Ice broken. Dinner's on me.", ideas:['Market run, then we cook together?','Street food night on Friday?'],
+    nc:{text:'Sharing their fries without being asked.', back:true} },
+  ida: { name:'Ida', age:26, km:3, g:'w', job:'Marine biology PhD', face:'1524504388940-b1c1722653e1', ru:'women/33', a:'#5EEAD4', b:'#6366F1',
+    bio:'Can talk about octopuses for 45 minutes uninterrupted. Looking for a listener, or a rival.',
+    tags:['Octopuses','Diving','Aquariums','Science gossip'],
+    takes:['Can talk about octopuses for 45 minutes uninterrupted. Looking for a listener or a rival.'],
+    today:[{u:'1505118380757-91f5f5632de0',cap:'Fieldwork today. The octopus did not cooperate.',ago:'2h'}],
+    moments:[{u:'1505118380757-91f5f5632de0',cap:'Fieldwork.'},{seed:'ida-m2',cap:'Lab coat era.'},{seed:'ida-m3',cap:'Aquarium, again.'}],
+    vouches:[{by:'Yasmin',rel:'Lab partner',text:'The only person I know who makes science sound like gossip.'}],
+    replies:['Did you know octopuses have three hearts? Sorry. Reflex.',"Okay, that's a great answer.",'You ask good questions. Rare.',"I'm officially distracted from my thesis. Thanks.",'The next fact is a date-only fact.'],
+    reveal:"Hi! It's me, minus the frost.", ideas:['Aquarium date? You do the narration.','Harbour walk at sunset?'],
+    nc:{text:'Getting genuinely excited about something nerdy.', back:true} },
+  jonas: { name:'Jonas', age:31, km:2, g:'m', job:'Carpenter', face:'1472099645785-5658abf4ff4e', ru:'men/52', a:'#C9B37E', b:'#7C5C3B',
+    bio:'Built a bookshelf this weekend. Now I need someone with good recommendations to fill it.',
+    tags:['Woodwork','Books','Forest walks','Strong coffee'],
+    takes:['Built a bookshelf this weekend. Now I need someone with good book recommendations to fill it.'],
+    today:[{u:'1441974231531-c6227db76b6e',cap:'Picking out wood for the next shelf. Yes, it is a whole outing.',ago:'3h'}],
+    moments:[{u:'1441974231531-c6227db76b6e',cap:'Where the wood comes from.'},{seed:'jonas-m2',cap:'Shelf, empty.'},{seed:'jonas-m3',cap:'Workshop light.'}],
+    vouches:[{by:'Emil',rel:'Neighbour',text:'He built my daughter a dollhouse with a working doorbell.'}],
+    replies:['Good answer. Simple, honest.',"What's on your shelf right now?","I'd build you a shelf for that.",'You are easy to talk to.',"I'm not much of a texter, but here we are, texting."],
+    reveal:'Ice broken. Coffee this week?', ideas:['Second-hand bookshop on Saturday?','Coffee this week?'],
+    nc:{text:"Texting 'home safe?' after the date.", back:true} },
+};
+const ORDER = ['ella','malik','sofie','theo','freya','noah','amara','lucas','ida','jonas'];
+const FRIENDS = { sam:'Sam', lea:'Lea' };
+const MY_VOUCHES = [
+  {by:'Sam', rel:'Friend since you were 12', text:'Will show up to help you move and bring better snacks than you asked for.'},
+  {by:'Lea', rel:'Ex-flatmate', text:'Tells you the truth even when it is awkward. Especially then.'},
+];
+const WINGS = [
+  {friend:'Sam', p:'freya', why:'You both talk about bread like it is a religion.'},
+  {friend:'Lea', p:'jonas', why:"He's calm, you're not. That's a good thing."},
+];
+const FEED = [
+  {t:'take', p:'ella', i:0, ago:'14m', n:48},
+  {t:'moment', p:'freya', ago:'32m', n:121},
+  {t:'poll', p:'malik', ago:'1h'},
+  {t:'take', p:'sofie', i:0, ago:'1h', n:73},
+  {t:'wing', w:0},
+  {t:'take', p:'theo', i:0, ago:'2h', n:39},
+  {t:'vouch', p:'ella'},
+  {t:'moment', p:'ida', ago:'2h', n:88},
+  {t:'take', p:'noah', i:0, ago:'3h', n:152},
+  {t:'take', p:'amara', i:0, ago:'3h', n:64},
+  {t:'moment', p:'jonas', ago:'3h', n:57},
+  {t:'take', p:'lucas', i:0, ago:'4h', n:41},
+  {t:'vouch', p:'freya'},
+  {t:'take', p:'ida', i:0, ago:'5h', n:97},
+  {t:'wing', w:1},
+  {t:'take', p:'malik', i:0, ago:'5h', n:210},
+  {t:'take', p:'jonas', i:0, ago:'6h', n:45},
+  {t:'moment', p:'noah', ago:'6h', n:76},
+  {t:'take', p:'freya', i:0, ago:'7h', n:83},
+  {t:'take', p:'ella', i:1, ago:'8h', n:31},
+];
+const portrait = (pid, w, h) => { const p = P[pid]; return [UNS(p.face, w, h), RU(p.ru)]; };
+const scene = (o, seed) => [o.u ? UNSC(o.u) : null, PIC(o.seed || seed)];
+
+/* =========================================================
+   STATE
+   ========================================================= */
+const now = () => Date.now();
+function seedChats() {
+  return {
+    sofie: { origin:{kind:'nightcap', text:P.sofie.nc.text, mine:'When they ask a follow-up question and actually listen to the answer.'}, t:now()-6e5, unread:1, ri:2,
+      msgs:[
+        {f:'them', x:'Your Nightcap answer was the only one I hearted twice. Is that allowed?'},
+        {f:'me', x:'Ha. Yours made me realise I do that with my sister\'s dentist appointments.', w:0},
+        {f:'them', x:"That's either very sweet or slightly alarming."},
+        {f:'sys', k:'melt', w:.2},
+        {f:'me', x:"Sweet. Definitely sweet. Also, I saw your board game take. I'm in.", w:.2},
+        {f:'them', x:"Careful. I've made a grown man cry over Catan."},
+        {f:'sys', k:'melt', w:.4},
+        {f:'me', x:"I'll bring tissues and a strategy.", w:.4},
+        {f:'them', x:'Two more of these and you get to see my face properly.'},
+        {f:'sys', k:'melt', w:.6},
+      ]},
+    malik: { origin:{kind:'take', text:P.malik.takes[0]}, t:now()-36e5*3, unread:0, ri:4,
+      msgs:[
+        {f:'me', x:'For it. Pineapple, chili and a lot of opinions.', w:0},
+        {f:'them', x:'Correct answer. Chili was the bonus round.'},
+        {f:'sys', k:'melt', w:.2},
+        {f:'me', x:"What's the worst pizza crime you've ever witnessed?", w:.2},
+        {f:'them', x:'Someone folded a Neapolitan into a taco and ate it with a fork.'},
+        {f:'sys', k:'melt', w:.4},
+        {f:'me', x:"That's three crimes.", w:.4},
+        {f:'them', x:'See, this is why I replied.'},
+        {f:'sys', k:'melt', w:.6},
+        {f:'me', x:'Playlist status?', w:.6},
+        {f:'them', x:"Fourteen songs. It's called 'Pineapple Defence League'."},
+        {f:'sys', k:'melt', w:.8},
+        {f:'me', x:"I'm honoured. Truly.", w:.8},
+        {f:'them', x:'Alright, ice broken. Hi.'},
+        {f:'sys', k:'reveal', w:1},
+        {f:'them', x:'Friday, the wood-fired place by the harbour?'},
+        {f:'me', x:"It's a date.", w:1},
+      ]},
+    amara: { origin:{kind:'today', text:'Label maker unboxing. This is the most excited I have been all month.'}, t:now()-36e5*20, unread:0, ri:1,
+      msgs:[
+        {f:'me', x:'Please tell me you labelled the label maker.', w:0},
+        {f:'them', x:"Obviously. It says LABEL MAKER. I'm not an animal."},
+        {f:'sys', k:'melt', w:.2},
+      ]},
+  };
+}
+function fresh() {
+  return {
+    v:1, stage:'landing',
+    me:{ name:'', age:'', photo:null, show:'all', takes:[], today:[] },
+    warmth:{ sofie:.6, malik:1, amara:.2 },
+    chats: seedChats(),
+    sparked:{}, hearted:{}, poll:null, seen:{},
+    nc:{ phase:'answer', answer:'', idx:0, hearts:[], endsAt:0, started:[] },
+    view:'home', open:null, meTab:'takes', frostSelf:false,
+  };
+}
+let S;
+try { S = JSON.parse(localStorage.getItem(KEY)) || fresh(); } catch { S = fresh(); }
+if (!S || S.v !== 1) S = fresh();
+let saveT;
+function save() {
+  clearTimeout(saveT);
+  saveT = setTimeout(() => {
+    try { localStorage.setItem(KEY, JSON.stringify(S)); }
+    catch { toast("Couldn't save in this browser. Changes will reset on reload."); }
+  }, 150);
+}
+const W = pid => Math.max(0, Math.min(1, S.warmth[pid] || 0));
+const visible = pid => S.me.show === 'all' || P[pid].g === S.me.show;
+const meName = () => S.me.name || 'You';
+
+/* ---------- Warmth helpers ---------- */
+const hx = h => [1,3,5].map(i => parseInt(h.slice(i, i + 2), 16));
+const lerp = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t));
+function warmColor(w) {
+  const F = hx('#CDE8FF'), G = hx('#FFB45C'), R = hx('#FF5A8A');
+  const c = w < .5 ? lerp(F, G, w / .5) : lerp(G, R, (w - .5) / .5);
+  return `rgb(${c.join(',')})`;
+}
+function warmLabel(w) {
+  const pct = Math.round(w * 100);
+  if (w >= 1) return 'Ice broken. You can see each other.';
+  if (w === 0) return 'Frosted. Say something real.';
+  if (w < .4) return `Frost ${pct}% melted`;
+  if (w < .8) return `Thawing, ${pct}% melted`;
+  return `Almost clear, ${pct}% melted`;
+}
+const meter = (w, attrs = '') => `<div class="meter" style="--w:${w}" ${attrs}><span></span></div>`;
+
+/* ---------- Avatars ---------- */
+function ava(pid, size = 44, opts = {}) {
+  if (pid === 'me') return meAva(size, opts);
+  const p = P[pid], w = opts.w ?? W(pid), px = Math.max(size * 2, 120);
+  return `<span class="fz ava" ${opts.static ? '' : `data-wp="${pid}"`} data-i="${p.name[0]}" style="--s:${size}px;--w:${w};--a:${p.a};--b:${p.b}">${img(portrait(pid, px, px), '')}</span>`;
+}
+function meAva(size, opts = {}) {
+  const w = opts.frost ? 0 : 1;
+  const ini = (S.me.name || 'Y')[0].toUpperCase();
+  return `<span class="fz ava" data-i="${esc(ini)}" style="--s:${size}px;--w:${w};--a:#CDE8FF;--b:#FF5A8A">${S.me.photo ? `<img src="${S.me.photo}" alt="">` : ''}</span>`;
+}
+const aura = (pid, size) => `<span class="fz ava" aria-hidden="true" style="--s:${size}px;--w:0;--a:${P[pid].a};--b:${P[pid].b}"></span>`;
+const avaBtn = (pid, size) => `<button data-action="profile" data-p="${pid}" aria-label="Open ${P[pid].name}'s profile">${ava(pid, size)}</button>`;
+function drip(el) {
+  if (reduced || !el) return;
+  const d = document.createElement('span'); d.className = 'drips';
+  for (let i = 0; i < 9; i++) {
+    const s = document.createElement('i');
+    s.style.left = (6 + Math.random() * 88) + '%';
+    s.style.animationDelay = (Math.random() * .6) + 's';
+    s.style.height = (20 + Math.random() * 25) + '%';
+    d.appendChild(s);
+  }
+  el.appendChild(d); setTimeout(() => d.remove(), 2600);
+}
+function setWarmth(pid, w) {
+  S.warmth[pid] = w;
+  $$(`[data-wp="${pid}"]`).forEach(el => el.style.setProperty('--w', w));
+  save();
+}
+
+/* =========================================================
+   STAGES: landing, onboarding, app
+   ========================================================= */
+function setStage(stage) {
+  S.stage = stage; save();
+  $('#landing').hidden = stage !== 'landing';
+  $('#onboard').hidden = stage !== 'onboard';
+  $('#shell').hidden = stage !== 'app';
+  document.body.style.overflow = '';
+  window.scrollTo(0, 0);
+  if (stage === 'landing') startHero(); else stopHero();
+  if (stage === 'onboard') renderOnboard(1);
+  if (stage === 'app') { buildShell(); render(); }
+}
+
+/* ---------- Landing hero demo ---------- */
+const HERO = [
+  {f:'ctx'},
+  {f:'me', x:'Agreed. Bonus points if the walk ends at a bakery.', w:0},
+  {f:'them', x:'Okay, you just won the whole argument.', set:.25},
+  {f:'me', x:"What's your order?", w:.25},
+  {f:'them', x:'Cardamom bun. Non-negotiable.', set:.5},
+  {f:'me', x:'Saturday, then?', w:.5},
+  {f:'them', x:'Saturday.', set:.75},
+  {f:'them', x:'Hi, by the way.', set:1},
+];
+let heroT = null;
+function startHero() {
+  const ph = $('#heroPhoto');
+  if (!ph.querySelector('img').src) {
+    const im = ph.querySelector('img'); const l = portrait('ella', 700, 875);
+    im.dataset.alts = l.slice(1).join('|'); im.onerror = () => imgFail(im); im.src = l[0];
+  }
+  requestAnimationFrame(() => setTimeout(() => $('#landing').classList.add('thawed'), 80));
+  if (reduced) { heroSet(1); $('#heroMsgs').innerHTML = HERO.slice(-3).map(heroBub).join(''); return; }
+  stopHero(); let i = 0;
+  const step = () => {
+    if (i === 0) { heroSet(0); $('#heroMsgs').innerHTML = ''; }
+    const m = HERO[i];
+    if (m.f === 'ctx') $('#heroMsgs').insertAdjacentHTML('beforeend', `<div class="ctx" style="margin:0 0 4px;padding:10px 12px;width:100%"><p class="ctx-l">You replied to Ella's take</p><blockquote style="font-size:16px">"The best part of a date is the walk afterwards, when nobody wants to say goodnight first."</blockquote></div>`);
+    else {
+      const box = $('#heroMsgs'); box.insertAdjacentHTML('beforeend', heroBub(m));
+      while (box.children.length > 4) box.firstElementChild.remove();
+      if (m.set != null) { heroSet(m.set); drip($('#heroPhoto')); }
+    }
+    i++;
+    heroT = setTimeout(i >= HERO.length ? () => { i = 0; step(); } : step, i >= HERO.length ? 4200 : (i === 1 ? 900 : 1500));
+  };
+  heroT = setTimeout(step, 1300);
+}
+function heroBub(m) { return `<div class="bub ${m.f}" ${m.f === 'me' ? `style="--bc:${warmColor(m.w)}"` : ''}>${esc(m.x)}</div>`; }
+function heroSet(w) {
+  $('#heroPhoto').style.setProperty('--w', w);
+  $('#heroMeter').style.setProperty('--w', w);
+  $('#heroLabel').textContent = warmLabel(w);
+}
+function stopHero() { clearTimeout(heroT); }
+
+/* ---------- Onboarding ---------- */
+let obShow = 'all';
+function renderOnboard(step) {
+  const el = $('#onboard');
+  const top = `<div class="ob-top"><div class="brand">${LOGO}<span class="wordmark">ultimate</span></div><div class="ob-prog" aria-label="Step ${step} of 2"><i class="on"></i><i class="${step === 2 ? 'on' : ''}"></i></div></div>`;
+  if (step === 1) {
+    el.innerHTML = `<form class="ob" id="ob1" novalidate>${top}
+      <h1>First, what should people call you?</h1>
+      <p class="lead">No photo needed to start. On Ultimate, people meet your words first.</p>
+      <div class="row">
+        <div><label for="obName">First name</label><input class="field" id="obName" maxlength="24" autocomplete="given-name" value="${esc(S.me.name)}" placeholder="Your first name"></div>
+        <div><label for="obAge">Age</label><input class="field" id="obAge" inputmode="numeric" maxlength="2" value="${esc(S.me.age)}" placeholder="30"></div>
+      </div>
+      <label>Who would you like to meet?</label>
+      <div class="seg" role="group" aria-label="Who would you like to meet">
+        ${[['w','Women'],['m','Men'],['all','Everyone']].map(([v,l]) => `<button type="button" data-ob-show="${v}" aria-pressed="${obShow === v}">${l}</button>`).join('')}
+      </div>
+      <p class="err" id="obErr" role="alert"></p>
+      <div class="ob-actions"><button class="btn primary wide" type="submit">Next</button><button type="button" class="linkbtn" data-action="to-landing">Back to the intro</button></div>
+    </form>`;
+    el.querySelectorAll('[data-ob-show]').forEach(b => b.onclick = () => { obShow = b.dataset.obShow; el.querySelectorAll('[data-ob-show]').forEach(x => x.setAttribute('aria-pressed', x === b)); });
+    $('#ob1').onsubmit = e => {
+      e.preventDefault();
+      const name = $('#obName').value.trim(), age = parseInt($('#obAge').value, 10);
+      if (!name) return ($('#obErr').textContent = 'Add your first name to continue.', $('#obName').focus());
+      if (!age || age < 18) return ($('#obErr').textContent = 'Ultimate is for adults 18 and over. Add your age to continue.', $('#obAge').focus());
+      S.me.name = name.slice(0, 24); S.me.age = Math.min(age, 99); S.me.show = obShow; save(); renderOnboard(2);
+    };
+    if (isDesk()) $('#obName').focus();
+  } else {
+    const starters = ['Unpopular opinion: ','Green flag: ',"I'm looking for someone who ",'Ask me about '];
+    el.innerHTML = `<form class="ob" id="ob2" novalidate>${top}
+      <h1>Now your first take.</h1>
+      <p class="lead">Say something true about you. This is what people reply to, so give them something to work with.</p>
+      <div class="chips" style="margin-bottom:12px">${starters.map(s => `<button type="button" class="chip" data-starter="${esc(s)}">${esc(s.trim())}</button>`).join('')}</div>
+      <label for="obTake" class="sr">Your take</label>
+      <textarea class="field" id="obTake" maxlength="200" placeholder="Unpopular opinion: breakfast for dinner is a personality trait."></textarea>
+      <p class="err" id="obErr" role="alert"></p>
+      <div class="ob-actions"><button class="btn primary wide" type="submit">Post and enter</button><button type="button" class="linkbtn" id="obSkip">Skip for now</button></div>
+    </form>`;
+    el.querySelectorAll('[data-starter]').forEach(b => b.onclick = () => { const t = $('#obTake'); t.value = b.dataset.starter; t.focus(); t.setSelectionRange(t.value.length, t.value.length); });
+    $('#ob2').onsubmit = e => {
+      e.preventDefault();
+      const t = $('#obTake').value.trim();
+      if (t.length < 8) return ($('#obErr').textContent = 'Write at least a few words, or skip for now.');
+      S.me.takes.unshift({ id:'me-' + now(), x:t, t:now() }); enterApp('Take posted. Welcome to Ultimate.');
+    };
+    $('#obSkip').onclick = () => enterApp('Welcome to Ultimate.');
+  }
+}
+function enterApp(msg) {
+  if (!S.nc.endsAt) S.nc.endsAt = now() + 41 * 60e3;
+  setStage('app'); if (msg) toast(msg);
+}
+
+/* =========================================================
+   SHELL + NAV
+   ========================================================= */
+const VIEWS = [['home','Home','home'],['nightcap','Nightcap','nightcap'],['chats','Chats','chats'],['me','You','me']];
+function buildShell() {
+  $('#side').innerHTML = `
+    <button class="brand-btn" data-action="to-landing" aria-label="About Ultimate">${LOGO}<span class="wordmark">ultimate</span></button>
+    <nav class="nav" aria-label="Main">${VIEWS.map(([v,l,ic]) => `<button data-action="go" data-view="${v}">${I[ic]}<span>${l}</span>${v === 'nightcap' ? '<i class="live-dot" aria-hidden="true"></i>' : ''}${v === 'chats' ? '<i class="badge" data-badge hidden></i>' : ''}</button>`).join('')}</nav>
+    <button class="post-btn" data-action="compose" aria-label="Post">${I.plus}<span>Post a take</span></button>
+    <button class="side-me" data-action="go" data-view="me" data-me-chip></button>
+    <p class="side-foot">Prototype with demo profiles.</p>`;
+  $('#tabbar').innerHTML = VIEWS.map(([v,l,ic]) => `<button class="tab" data-action="go" data-view="${v}">${I[ic]}<span>${l}</span>${v === 'nightcap' ? '<i class="live-dot" aria-hidden="true"></i>' : ''}${v === 'chats' ? '<i class="badge" data-badge hidden></i>' : ''}</button>`).join('');
+}
+function updateChrome() {
+  $('#shell').dataset.view = S.view;
+  $$('[data-action="go"][data-view]').forEach(b => { if (b.closest('.tabbar,.nav')) b.toggleAttribute('aria-current', false); if (b.dataset.view === S.view && b.closest('.tabbar,.nav')) b.setAttribute('aria-current', 'page'); });
+  const un = Object.values(S.chats).reduce((a, c) => a + (c.unread || 0), 0);
+  $$('[data-badge]').forEach(b => { b.hidden = !un; b.textContent = un; });
+  $$('.live-dot').forEach(d => d.hidden = S.nc.phase === 'drop');
+  const chip = $('[data-me-chip]');
+  if (chip) chip.innerHTML = `${meAva(40)}<span class="who"><b>${esc(meName())}</b><br><small>${S.me.age ? S.me.age + ', ' : ''}your profile</small></span>`;
+}
+function go(view) {
+  if (S.view === view && view !== 'chats') { window.scrollTo({ top:0, behavior: reduced ? 'auto' : 'smooth' }); return; }
+  S.view = view; if (view !== 'chats') S.open = null;
+  save(); render(); window.scrollTo(0, 0);
+}
+function render() {
+  const m = $('#main');
+  m.innerHTML = ({ home:homeHTML, nightcap:ncHTML, chats:chatsHTML, me:meHTML })[S.view]();
+  if (S.view === 'nightcap') bindDeck();
+  if (S.view === 'chats' && S.open) afterConvoRender();
+  renderRail(); updateChrome(); tick();
+}
+
+/* =========================================================
+   HOME FEED
+   ========================================================= */
+function homeHTML() {
+  const myRing = S.me.today.length
+    ? `<button class="t-item" data-action="story" data-p="me"><span class="ring" style="--rc:#CDE8FF">${meAva(64)}</span><span class="nm">Your Today</span></button>`
+    : `<button class="t-item" data-action="compose" data-tab="today"><span class="ring add">${meAva(61)}<span class="plus">${I.plus}</span></span><span class="nm">Your Today</span></button>`;
+  const rings = ORDER.filter(pid => visible(pid) && P[pid].today?.length).sort((a, b) => (S.seen[a] ? 1 : 0) - (S.seen[b] ? 1 : 0)).map(pid =>
+    `<button class="t-item" data-action="story" data-p="${pid}"><span class="ring ${S.seen[pid] ? 'seen' : ''}" style="--rc:${warmColor(W(pid))}">${ava(pid, 64)}</span><span class="nm">${P[pid].name}</span></button>`).join('');
+  const items = FEED.filter(it => it.t === 'wing' ? visible(WINGS[it.w].p) : visible(it.p)).map(feedItem).join('');
+  const mine = S.me.takes.map(t => `<article class="post pop">${meAva(44)}<div><div class="post-head"><span class="pname">${esc(meName())}</span><span class="pmeta">your take</span><span class="ptime">${ago(t.t)}</span></div><p class="take">${esc(t.x)}</p></div></article>`).join('');
+  return `
+  <header class="topbar"><div class="brand mob">${LOGO}<span class="wordmark">ultimate</span></div><h1 class="desk">Home</h1><span class="grow"></span><span class="proto">Prototype</span><button class="icon-btn mob" data-action="compose" aria-label="Post a take">${I.plus}</button></header>
+  <div class="today" aria-label="Today">${myRing}${rings}</div>
+  <button class="prompt" data-action="compose">${meAva(40)}<span class="fake">What's your take, ${esc(meName())}?</span><span class="btn primary sm">Post</span></button>
+  ${ncBanner()}
+  <div class="feed">${mine}${items}
+    <div class="feed-end">${I.flake}<p>You're all caught up. New takes show up as people post them, and Nightcap opens every night at 21:00.</p></div>
+  </div>`;
+}
+function ncBanner() {
+  if (S.nc.phase === 'drop') return `<button class="nc-banner" data-action="go" data-view="nightcap"><span class="nc-b-top">Tonight's Drop is in</span><span class="nc-b-q">${matchList().length ? `${matchList().length} mutual ${matchList().length === 1 ? 'heart' : 'hearts'} from Nightcap.` : 'See how tonight went.'}</span><span class="nc-b-cta">See the Drop</span></button>`;
+  return `<button class="nc-banner" data-action="go" data-view="nightcap"><span class="nc-b-top"><i class="live-dot"></i><span>Nightcap is open, <span data-countdown></span> left</span></span><span class="nc-b-q">${NC_Q}</span><span class="nc-b-cta">${S.nc.phase === 'answer' ? 'Answer anonymously' : 'Keep going'}</span></button>`;
+}
+function head(pid, ago) { const p = P[pid]; return `<div class="post-head"><button class="pname" data-action="profile" data-p="${pid}">${p.name}</button><span class="pmeta">${p.age}, ${p.km} km away</span><span class="ptime">${ago}</span></div>`; }
+function feedItem(it) {
+  const p = P[it.p];
+  if (it.t === 'take') {
+    const id = `${it.p}-t${it.i}`, on = !!S.sparked[id];
+    return `<article class="post">${avaBtn(it.p, 44)}<div style="min-width:0">${head(it.p, it.ago)}<p class="take">${esc(p.takes[it.i])}</p>
+      <div class="acts"><button class="act reply-act" data-action="reply" data-p="${it.p}" data-kind="take" data-i="${it.i}">${I.reply}<span>Reply</span></button>
+      <button class="act ${on ? 'on' : ''}" data-action="spark" data-id="${id}" data-n="${it.n}" aria-pressed="${on}" aria-label="Spark">${I.spark}<span>${it.n + (on ? 1 : 0)}</span></button>
+      <button class="act share" data-action="share" aria-label="Share">${I.share}</button></div></div></article>`;
+  }
+  if (it.t === 'poll') {
+    const pl = p.poll, voted = S.poll !== null, v = pl.v.map((n, i) => n + (S.poll === i ? 1 : 0)), tot = v[0] + v[1];
+    return `<article class="post">${avaBtn(it.p, 44)}<div style="min-width:0">${head(it.p, it.ago)}<p class="take">${esc(pl.q)}</p>
+      <div class="poll ${voted ? 'voted' : ''}" id="poll">${pl.o.map((o, i) => `<button class="opt ${S.poll === i ? 'mine' : ''}" data-action="poll" data-o="${i}" style="--pct:${(v[i] / tot).toFixed(3)}"><i class="bar"></i><span>${o}</span><b>${Math.round(v[i] / tot * 100)}%</b></button>`).join('')}</div>
+      <p class="poll-note" id="pollNote">${voted ? `You and ${v[S.poll] - 1} others picked ${pl.o[S.poll].toLowerCase()}.` : `${tot} votes. Vote to see where you land.`}</p>
+      <div class="acts"><button class="act reply-act" data-action="reply" data-p="${it.p}" data-kind="poll">${I.reply}<span>Reply</span></button><button class="act share" data-action="share" aria-label="Share">${I.share}</button></div></div></article>`;
+  }
+  if (it.t === 'moment') {
+    const m = p.moments[0], id = `${it.p}-m0`, on = !!S.hearted[id];
+    return `<article class="moment"><div class="m-head">${avaBtn(it.p, 36)}${head(it.p, it.ago)}</div>
+      <div class="m-media" data-tap="${id}" style="--a:${p.a};--b:${p.b}">${img(scene(m, it.p + '-m0'), `${p.name}'s moment: ${m.cap}`)}<span class="burst">${I.heart}</span></div>
+      <div class="acts"><button class="act heart ${on ? 'on' : ''}" data-action="heart" data-id="${id}" data-n="${it.n}" aria-pressed="${on}" aria-label="Like">${I.heart}<span>${it.n + (on ? 1 : 0)}</span></button>
+      <button class="act reply-act" data-action="reply" data-p="${it.p}" data-kind="moment">${I.reply}<span>Reply</span></button><button class="act share" data-action="share" aria-label="Share">${I.share}</button></div>
+      <p class="m-cap"><b>${p.name}</b> ${esc(m.cap)}</p></article>`;
+  }
+  if (it.t === 'vouch') {
+    const v = p.vouches[0];
+    return `<article class="vouch"><p class="v-line"><b>${v.by}</b> vouched for <button data-action="profile" data-p="${it.p}">${p.name}</button></p><blockquote class="v-quote">"${esc(v.text)}"</blockquote><p class="v-rel">${esc(v.rel)}</p></article>`;
+  }
+  if (it.t === 'wing') {
+    const w = WINGS[it.w], q = P[w.p];
+    return `<article class="wing"><span class="pair">${meAva(40)}${ava(w.p, 40)}</span><p><b>${w.friend}</b>, your friend, thinks you'd click with <b>${q.name}</b>.</p><blockquote>"${esc(w.why)}"</blockquote><button class="btn ghost sm" data-action="profile" data-p="${w.p}">See ${q.name}'s profile</button></article>`;
+  }
+  return '';
+}
+function ago(t) { const m = Math.round((now() - t) / 6e4); return m < 1 ? 'now' : m < 60 ? m + 'm' : m < 1440 ? Math.round(m / 60) + 'h' : Math.round(m / 1440) + 'd'; }
+
+/* ---------- Rail (desktop) ---------- */
+function renderRail() {
+  const r = $('#rail'); if (!r) return;
+  const warming = Object.entries(S.chats).filter(([pid]) => visible(pid)).sort((a, b) => W(b[0]) - W(a[0])).slice(0, 3);
+  const nc = S.nc.phase === 'drop'
+    ? `<section class="r-card"><h3>${I.nightcap} The Drop</h3><p class="q">${matchList().length ? `${matchList().length} mutual ${matchList().length === 1 ? 'heart' : 'hearts'} tonight.` : 'No mutual hearts tonight.'}</p><p class="cd">Next question tomorrow at 21:00</p><button class="btn primary sm" data-action="go" data-view="nightcap">See the Drop</button></section>`
+    : `<section class="r-card"><h3>${I.nightcap} Nightcap</h3><p class="q">${NC_Q}</p><p class="cd"><i class="live-dot" style="display:inline-block;margin-right:8px"></i>The Drop in <span data-countdown></span></p><button class="btn primary sm" data-action="go" data-view="nightcap">${S.nc.phase === 'answer' ? 'Answer anonymously' : 'Keep going'}</button></section>`;
+  r.innerHTML = `${S.view === 'nightcap' ? '' : nc}
+    <section class="r-sec"><h4>Warming up</h4>${warming.length ? warming.map(([pid]) => `<button class="r-row" data-action="open-chat" data-p="${pid}">${ava(pid, 44)}<b>${P[pid].name}</b>${meter(W(pid), `data-wm="${pid}"`)}</button>`).join('') : '<p class="r-foot" style="margin:0">Reply to a take to start your first conversation.</p>'}</section>
+    <section class="r-sec"><h4>Friends think you'd click</h4>${WINGS.filter(w => visible(w.p)).map(w => `<button class="r-row" data-action="profile" data-p="${w.p}">${ava(w.p, 44)}<b>${P[w.p].name}</b><small>Suggested by ${w.friend}</small></button>`).join('')}</section>
+    <p class="r-foot">Prototype for ultimatedating.com. Demo profiles and placeholder photos.</p>`;
+}
+
+/* =========================================================
+   NIGHTCAP
+   ========================================================= */
+const ncList = () => ORDER.filter(pid => visible(pid) && pid !== 'sofie');
+const matchList = () => S.nc.hearts.filter(pid => P[pid].nc.back);
+function ncHTML() {
+  const ph = S.nc.phase;
+  let body = '';
+  if (ph === 'answer') {
+    body = `<form class="nc-form" id="ncForm"><label for="ncIn" class="sr">Your answer</label>
+      <textarea class="field" id="ncIn" maxlength="140" placeholder="Be specific. Specific is attractive."></textarea>
+      <div class="row"><small id="ncCount">140 characters left</small><button class="btn primary" type="submit">Send answer</button></div>
+      <p class="err" id="ncErr" role="alert"></p></form>`;
+  } else if (ph === 'deck') {
+    const list = ncList(), i = S.nc.idx;
+    const cards = list.slice(i, i + 3).map((pid, k) => `<div class="nc-card" data-k="${k}" data-p="${pid}" style="--k:${k};z-index:${10 - k}" ${k ? 'aria-hidden="true"' : ''}><p class="ans">${esc(P[pid].nc.text)}</p><p class="who">${aura(pid, 32)}Someone ${P[pid].km} km away</p><i class="tint"></i></div>`).join('');
+    body = `${mineBox()}<div class="deck" id="deck">${cards}</div>
+      <div class="deck-btns"><button class="round" data-action="nc-vote" data-v="0" aria-label="Pass">${I.pass}</button><button class="round heart" data-action="nc-vote" data-v="1" aria-label="Heart this answer">${I.heart}</button></div>
+      <p class="deck-count">${Math.min(i + 1, list.length)} of ${list.length}. Drag right to heart, left to pass.</p>`;
+  } else if (ph === 'wait') {
+    body = `${mineBox()}<div class="wait"><div class="big" data-countdown></div><p>You hearted ${S.nc.hearts.length} ${S.nc.hearts.length === 1 ? 'answer' : 'answers'}. Mutual hearts drop at 22:00, with names and frosted photos.</p>
+      <button class="btn primary" data-action="nc-drop">Skip to the Drop (demo)</button></div>`;
+  } else {
+    const ms = matchList();
+    body = `<div class="drop"><h2>The Drop</h2><p>${ms.length ? `${ms.length} ${ms.length === 1 ? 'person' : 'people'} hearted your answer back. Their faces stay frosted until you talk.` : 'No mutual hearts tonight. A new question goes out tomorrow at 21:00.'}</p>
+      ${ms.map((pid, k) => { const started = S.chats[pid]; return `<div class="match" style="animation-delay:${.25 + k * .35}s">${ava(pid, 64)}<h3>${P[pid].name}, ${P[pid].age}</h3><p class="theirs">"${esc(P[pid].nc.text)}"</p><button class="btn ${started ? 'ghost' : 'primary'}" data-action="${started ? 'open-chat' : 'nc-start'}" data-p="${pid}">${started ? 'Open chat' : 'Start talking'}</button></div>`; }).join('')}
+      <button class="btn ghost" data-action="nc-again" style="margin-top:8px">Play tonight's round again (demo)</button></div>`;
+  }
+  return `<header class="topbar"><div class="brand mob">${LOGO}</div><h1>Nightcap</h1><span class="grow"></span><span class="proto">Prototype</span></header>
+    <div class="nc">
+      ${ph !== 'drop' ? `<p class="nc-live"><i class="live-dot"></i><span>Live now, <span data-countdown></span> until the Drop</span></p>` : ''}
+      ${ph === 'answer' ? `<p class="nc-intro">One question for everyone nearby. Answers stay anonymous until 22:00.</p>` : ''}
+      <h2 class="nc-q ${ph === 'answer' ? '' : 'compact'}">${NC_Q}</h2>
+      ${body}
+    </div>`;
+}
+function mineBox() { return `<div class="nc-mine">Your answer<b>${esc(S.nc.answer)}</b></div>`; }
+function bindDeck() {
+  const f = $('#ncForm');
+  if (f) {
+    const ta = $('#ncIn');
+    ta.oninput = () => $('#ncCount').textContent = `${140 - ta.value.length} characters left`;
+    f.onsubmit = e => {
+      e.preventDefault(); const v = ta.value.trim();
+      if (v.length < 6) { $('#ncErr').textContent = 'Write a few words first. Specific answers get more hearts.'; return; }
+      S.nc.answer = v; S.nc.phase = 'deck'; S.nc.idx = 0; S.nc.hearts = []; save(); render(); toast('Answer sent. Now see what others said.');
+    };
+    return;
+  }
+  const top = $('.nc-card[data-k="0"]'); if (!top) return;
+  let sx = 0, sy = 0, dx = 0, drag = false;
+  const tint = top.querySelector('.tint');
+  top.onpointerdown = e => { drag = true; sx = e.clientX; sy = e.clientY; dx = 0; top.classList.add('dragging'); top.setPointerCapture(e.pointerId); };
+  top.onpointermove = e => {
+    if (!drag) return; dx = e.clientX - sx; const dy = (e.clientY - sy) * .2;
+    top.style.transform = `translate(${dx}px,${dy}px) rotate(${dx * .05}deg)`;
+    tint.classList.toggle('pass', dx < 0); tint.style.opacity = Math.min(1, Math.abs(dx) / 120);
+  };
+  const end = () => {
+    if (!drag) return; drag = false; top.classList.remove('dragging');
+    if (Math.abs(dx) > 100) ncVote(dx > 0 ? 1 : 0, true);
+    else { top.style.transform = ''; tint.style.opacity = 0; }
+  };
+  top.onpointerup = end; top.onpointercancel = end;
+}
+function ncVote(v) {
+  const top = $('.nc-card[data-k="0"]'); if (!top || top.dataset.gone) return;
+  top.dataset.gone = 1;
+  const pid = top.dataset.p;
+  if (v) S.nc.hearts.push(pid);
+  const tint = top.querySelector('.tint'); tint.classList.toggle('pass', !v); tint.style.opacity = 1;
+  top.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1), opacity .45s';
+  top.style.transform = `translate(${v ? 140 : -140}%, -6%) rotate(${v ? 18 : -18}deg)`; top.style.opacity = 0;
+  S.nc.idx++;
+  if (S.nc.idx >= ncList().length) S.nc.phase = 'wait';
+  save();
+  setTimeout(render, reduced ? 0 : 380);
+}
+function ncStart(pid) {
+  S.chats[pid] = { origin:{ kind:'nightcap', text:P[pid].nc.text, mine:S.nc.answer }, t:now(), unread:0, ri:0, msgs:[] };
+  S.warmth[pid] = S.warmth[pid] || 0;
+  openChat(pid);
+  queueReply(pid, `You hearted mine, I hearted yours. So what's the story behind your answer?`, false, 900);
+}
+
+/* =========================================================
+   CHATS
+   ========================================================= */
+function originLabel(o) { return { take:'From a take', today:'From Today', moment:'From a moment', poll:'From a poll', nightcap:'Nightcap match' }[o.kind] || ''; }
+function lastText(c) { const m = [...c.msgs].reverse().find(m => m.f !== 'sys'); return m ? (m.f === 'me' ? 'You: ' : '') + m.x : 'Say something real to start melting the frost.'; }
+function chatsHTML() {
+  const list = Object.entries(S.chats).filter(([pid]) => visible(pid)).sort((a, b) => b[1].t - a[1].t);
+  const rows = list.length ? `<ul class="clist">${list.map(([pid, c]) => `<li><button class="crow ${c.unread ? 'unread' : ''}" data-action="open-chat" data-p="${pid}" aria-current="${S.open === pid}">${ava(pid, 56)}<b>${P[pid].name}${c.unread ? '<i class="dot-un" aria-label="unread"></i>' : ''}</b><span class="t">${ago(c.t)}</span><span class="last">${esc(lastText(c))}</span><span class="mrow">${meter(W(pid), `data-wm="${pid}"`)}<span>${originLabel(c.origin)}</span></span></button></li>`).join('')}</ul>`
+    : `<div class="empty"><h3>No chats yet</h3><p>Every chat starts by replying to something real: a take, a Today, or a Nightcap answer.</p><button class="btn primary" data-action="go" data-view="home">Find a take to reply to</button></div>`;
+  const listPane = `<div class="list-pane"><header class="topbar"><div class="brand mob">${LOGO}</div><h1>Chats</h1><span class="grow"></span></header><p class="v-sub">Faces sharpen as you talk. The bar shows how much frost is left.</p>${rows}</div>`;
+  const pane = S.open && S.chats[S.open] ? convoHTML(S.open) : `<div class="pane-empty"><div><h3>Pick a conversation</h3><p>Or reply to a take on Home to start a new one.</p></div></div>`;
+  return `<div class="chats-wrap">${listPane}${pane}</div>`;
+}
+function convoHTML(pid) {
+  const p = P[pid], w = W(pid);
+  return `<section class="convo ${!isDesk() && convoOpenNow ? 'open' : ''}" id="convo" aria-label="Chat with ${p.name}">
+    <header class="convo-head"><button class="icon-btn back" data-action="close-chat" aria-label="Back to chats">${I.back}</button>
+      <button class="who-btn" data-action="profile" data-p="${pid}">${ava(pid, 48)}<span class="who-txt"><b>${p.name}, ${p.age}</b><small id="warmLbl">${warmLabel(w)}</small>${meter(w, `data-wm="${pid}"`)}</span></button></header>
+    <div class="msgs" id="msgs" aria-live="polite">${ctxHTML(S.chats[pid], pid)}${S.chats[pid].msgs.map(m => msgHTML(m, pid)).join('')}</div>
+    <div class="ideas" id="ideas"></div>
+    <form class="composer" id="composer"><label for="msgIn" class="sr">Message ${p.name}</label><input id="msgIn" placeholder="Message ${p.name}" autocomplete="off" enterkeyhint="send" maxlength="400"><button class="send" type="submit" aria-label="Send">${I.send}</button></form>
+  </section>`;
+}
+let convoOpenNow = false;
+function ctxHTML(c, pid) {
+  const p = P[pid], o = c.origin;
+  if (o.kind === 'nightcap') return `<div class="ctx"><p class="ctx-l">Nightcap match</p><p class="ctx-q">${NC_Q}</p><div class="ctx-pair"><blockquote><span>${p.name}</span>"${esc(o.text)}"</blockquote><blockquote><span>You</span>"${esc(o.mine)}"</blockquote></div></div>`;
+  const lab = { take:`You replied to ${p.name}'s take`, today:`You replied to ${p.name}'s Today`, moment:`You replied to ${p.name}'s moment`, poll:`You replied to ${p.name}'s poll` }[o.kind];
+  return `<div class="ctx"><p class="ctx-l">${lab}</p><blockquote>"${esc(o.text)}"</blockquote></div>`;
+}
+function msgHTML(m, pid) {
+  if (m.f === 'sys') {
+    if (m.k === 'melt') return `<p class="melt">${ava(pid, 28, { w:m.w, static:true })}<span><b>Frost ${Math.round(m.w * 100)}% melted.</b> Keep talking.</span></p>`;
+    if (m.k === 'reveal') return `<div class="reveal">${revealPhoto(pid, m.anim ? .8 : 1)}<p><b>Ice broken.</b>You can both see each other clearly now.</p></div>`;
+    if (m.k === 'ctx') return `<div class="ctx inline"><p class="ctx-l">${esc(m.lab)}</p><blockquote>"${esc(m.x)}"</blockquote></div>`;
+    return `<p class="sys">${esc(m.x)}</p>`;
+  }
+  return `<div class="bub ${m.f}" ${m.f === 'me' ? `style="--bc:${warmColor(m.w ?? 0)}"` : ''}>${esc(m.x)}</div>`;
+}
+function revealPhoto(pid, w) { const p = P[pid]; return `<span class="fz" data-i="${p.name[0]}" style="--w:${w};--a:${p.a};--b:${p.b}">${img(portrait(pid, 600, 750), `${p.name}'s photo`)}</span>`; }
+function afterConvoRender() {
+  const pid = S.open, box = $('#msgs'); if (!box) return;
+  box.scrollTop = box.scrollHeight;
+  renderIdeas(pid);
+  $('#composer').onsubmit = e => { e.preventDefault(); const v = $('#msgIn').value.trim(); if (!v) return; $('#msgIn').value = ''; sendMsg(pid, v); };
+}
+function renderIdeas(pid) {
+  const el = $('#ideas'); if (!el) return;
+  const c = S.chats[pid], p = P[pid], w = W(pid);
+  const mineCount = c.msgs.filter(m => m.f === 'me').length;
+  let chips = [];
+  if (w >= 1 && !c.dated) chips = p.ideas.map(x => `<button class="chip date" data-action="idea" data-x="${esc(x)}">${esc(x)}</button>`);
+  else if (mineCount === 0) chips = p.tags.slice(0, 3).map(t => `<button class="chip" data-action="idea" data-x="${esc(`Okay, ${t.toLowerCase()}. How serious are we talking?`)}">Ask about ${esc(t.toLowerCase())}</button>`);
+  el.innerHTML = chips.join('');
+}
+function pushMsg(pid, m) {
+  const c = S.chats[pid]; c.msgs.push(m); c.t = now();
+  const box = (S.open === pid) && $('#msgs');
+  if (box) { box.insertAdjacentHTML('beforeend', msgHTML(m, pid)); box.lastElementChild.classList.add('pop'); box.scrollTop = box.scrollHeight; }
+  save();
+}
+const replyT = {};
+function sendMsg(pid, text) {
+  const c = S.chats[pid]; const isDate = P[pid].ideas.includes(text) && W(pid) >= 1;
+  pushMsg(pid, { f:'me', x:text, w:W(pid) });
+  if (isDate) { c.dated = true; renderIdeas(pid); queueReply(pid, "Yes. It's a date.", false, 1100, () => pushMsg(pid, { f:'sys', x:"You've got a date. Ultimate sends you both a reminder the day before." })); return; }
+  renderIdeas(pid);
+  if (replyT[pid]) return;
+  const p = P[pid];
+  const nw = Math.min(1, Math.round((W(pid) + .2) * 10) / 10);
+  const melts = W(pid) < 1;
+  const text2 = melts && nw >= 1 ? p.reveal : p.replies[c.ri++ % p.replies.length];
+  queueReply(pid, text2, melts ? nw : false, 1100 + Math.min(1400, text.length * 18));
+}
+function queueReply(pid, text, newW, delay, after) {
+  const box = () => S.open === pid && $('#msgs');
+  replyT[pid] = setTimeout(() => {
+    const b = box(); if (b) { b.insertAdjacentHTML('beforeend', '<div class="typing" id="typing"><i></i><i></i><i></i></div>'); b.scrollTop = b.scrollHeight; }
+    replyT[pid] = setTimeout(() => {
+      $('#typing')?.remove(); delete replyT[pid];
+      pushMsg(pid, { f:'them', x:text });
+      if (newW !== false && newW != null) melt(pid, newW);
+      if (S.open !== pid) { S.chats[pid].unread = (S.chats[pid].unread || 0) + 1; toast(`${P[pid].name} replied`); if (S.view === 'chats' && !S.open) render(); else updateChrome(); }
+      after?.();
+    }, 900 + Math.random() * 600);
+  }, Math.max(300, delay - 900));
+}
+function melt(pid, w) {
+  setWarmth(pid, w);
+  $$(`[data-wm="${pid}"]`).forEach(m => m.style.setProperty('--w', w));
+  const here = S.open === pid;
+  if (here) { $('#warmLbl') && ($('#warmLbl').textContent = warmLabel(w)); drip($('.convo-head .fz')); }
+  if (w >= 1) {
+    pushMsg(pid, { f:'sys', k:'reveal', w:1, anim:1 });
+    const r = here && $$('#msgs .reveal .fz').at(-1); if (r) { drip(r); setTimeout(() => r.style.setProperty('--w', 1), 80); }
+    S.chats[pid].msgs.at(-1).anim = 0; save();
+  } else pushMsg(pid, { f:'sys', k:'melt', w });
+  renderIdeas(pid);
+}
+function openChat(pid, swap) {
+  S.view = 'chats'; S.open = pid; if (S.chats[pid]) S.chats[pid].unread = 0;
+  const mobile = !isDesk(), hasConvo = ovStack.some(o => o.name === 'convo');
+  convoOpenNow = mobile && hasConvo;
+  save(); render();
+  if (mobile) {
+    if (!hasConvo) {
+      requestAnimationFrame(() => requestAnimationFrame(() => $('#convo')?.classList.add('open')));
+      convoOpenNow = true;
+      swap ? swapOv('convo', closeChatUI) : pushOv('convo', closeChatUI);
+    } else if (swap && ovStack.at(-1).name !== 'convo') closeOv(ovStack.at(-1).name);
+  } else {
+    if (swap && ovStack.length) closeOv(ovStack.at(-1).name);
+    setTimeout(() => $('#msgIn')?.focus({ preventScroll:true }), 100);
+  }
+}
+function closeChatUI() { $('#convo')?.classList.remove('open'); convoOpenNow = false; S.open = null; save(); updateChrome(); setTimeout(() => { if (S.view === 'chats' && !S.open) render(); }, 360); }
+
+/* =========================================================
+   ME
+   ========================================================= */
+function meHTML() {
+  const t = S.meTab;
+  let tab = '';
+  if (t === 'takes') tab = S.me.takes.length ? S.me.takes.map(x => `<article class="post">${meAva(44)}<div><div class="post-head"><span class="pname">${esc(meName())}</span><span class="ptime">${ago(x.t)}</span></div><p class="take">${esc(x.x)}</p></div></article>`).join('') : `<div class="empty"><h3>No takes yet</h3><p>Your takes are your first impression. Say something people can reply to.</p><button class="btn primary" data-action="compose">Post a take</button></div>`;
+  if (t === 'today') tab = S.me.today.length ? `<div class="grid3">${S.me.today.map((x, i) => `<button class="cell" data-action="story" data-p="me" data-i="${i}" style="--a:${x.a || '#323B78'};--b:${x.b || '#FF5A8A'}">${x.img ? `<img src="${x.img}" alt="">` : ''}<span>${esc(x.cap)}</span></button>`).join('')}</div>` : `<div class="empty"><h3>Nothing in Today</h3><p>Share a moment from your day. It disappears after 24 hours.</p><button class="btn primary" data-action="compose" data-tab="today">Add to Today</button></div>`;
+  if (t === 'vouches') tab = `<div style="padding:4px 16px">${MY_VOUCHES.map(v => `<div class="p-vouch"><blockquote>"${esc(v.text)}"</blockquote><p>${v.by}, ${esc(v.rel.toLowerCase())}</p></div>`).join('')}<div style="padding:18px 0"><button class="btn ghost" data-action="ask-vouch">${I.friends}Ask a friend to vouch</button></div></div>`;
+  return `<header class="topbar"><div class="brand mob">${LOGO}</div><h1>You</h1><span class="grow"></span><span class="proto">Prototype</span></header>
+    <div class="me-head"><div class="me-photo">${meAva(96, { frost:S.frostSelf })}<button class="cam" data-action="upload-photo" aria-label="Add a profile photo">${I.camera}</button></div>
+      <div><h2>${esc(meName())}${S.me.age ? ', ' + S.me.age : ''}</h2><p>${S.me.takes.length} ${S.me.takes.length === 1 ? 'take' : 'takes'}, ${MY_VOUCHES.length} vouches</p></div></div>
+    <div class="me-actions"><button class="btn primary sm" data-action="compose">${I.plus}Post a take</button><button class="btn ghost sm" data-action="compose" data-tab="today">${I.sun}Add to Today</button></div>
+    <div class="switch-row"><p>See yourself as others do<small>${S.me.photo ? 'Strangers see your photo frosted until you talk.' : 'Add a photo to see how the frost looks on you.'}</small></p><button class="switch" role="switch" aria-checked="${S.frostSelf}" data-action="frost-self" aria-label="See yourself frosted"></button></div>
+    <div class="tabs" role="tablist">${[['takes','Takes'],['today','Today'],['vouches','Vouches']].map(([k,l]) => `<button role="tab" aria-selected="${t === k}" data-action="me-tab" data-tab="${k}">${l}</button>`).join('')}</div>
+    ${tab}
+    <div class="settings">
+      <h3>Who you'd like to meet</h3>
+      <div class="seg" role="group" aria-label="Who you'd like to meet">${[['w','Women'],['m','Men'],['all','Everyone']].map(([v,l]) => `<button data-action="set-show" data-v="${v}" aria-pressed="${S.me.show === v}">${l}</button>`).join('')}</div>
+      <h3>Prototype</h3>
+      <button class="set-row" data-action="to-landing">About Ultimate<small>Replay the intro</small></button>
+      <button class="set-row danger" data-action="reset">Reset the demo<small>Clears everything you did</small></button>
+    </div>`;
+}
+
+/* =========================================================
+   SHEETS: profile, reply, compose
+   ========================================================= */
+let sheetClose = null;
+function openSheet(html, { swap } = {}) {
+  const sh = $('#sheet');
+  sh.innerHTML = `<div class="sheet-top"><span class="grab" aria-hidden="true"></span><button class="icon-btn" data-action="close-sheet" aria-label="Close">${I.close}</button></div><div class="sheet-body">${html}</div>`;
+  sh.scrollTop = 0;
+  swap ? swapOv('sheet', hideSheet) : pushOv('sheet', hideSheet);
+  $('#scrim').classList.add('open'); sh.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  bindSheetDrag();
+}
+function hideSheet() { $('#sheet').classList.remove('open'); $('#scrim').classList.remove('open'); document.body.style.overflow = ''; }
+function bindSheetDrag() {
+  const sh = $('#sheet'), top = sh.querySelector('.sheet-top');
+  let sy = 0, dy = 0, on = false;
+  top.onpointerdown = e => { if (isDesk() || e.target.closest('button')) return; on = true; sy = e.clientY; dy = 0; sh.style.transition = 'none'; top.setPointerCapture(e.pointerId); };
+  top.onpointermove = e => { if (!on) return; dy = Math.max(0, e.clientY - sy); sh.style.transform = `translateY(${dy}px)`; };
+  top.onpointerup = top.onpointercancel = () => { if (!on) return; on = false; sh.style.transition = ''; sh.style.transform = ''; if (dy > 110) closeOv('sheet'); };
+}
+function profileHTML(pid) {
+  const p = P[pid], w = W(pid), c = S.chats[pid];
+  return `<div class="prof">
+    <div class="fz prof-photo" data-wp="${pid}" data-i="${p.name[0]}" style="--w:${w};--a:${p.a};--b:${p.b}">${img(portrait(pid, 700, 875), `${p.name}'s photo`)}
+      <div class="ov"><h2>${p.name}, ${p.age}</h2><p>${esc(p.job)}, ${p.km} km away</p>${meter(w, `data-wm="${pid}"`)}<small>${w >= 1 ? 'Ice broken. You can see each other.' : w > 0 ? `${warmLabel(w)}. Keep talking.` : `${p.name}'s photos sharpen as you two talk.`}</small></div></div>
+    <p class="prof-bio">${esc(p.bio)}</p>
+    <ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+    <div class="prof-cta">${c ? `<button class="btn primary" data-action="open-chat" data-p="${pid}" data-swap="1">Open chat</button>` : `<button class="btn primary" data-action="reply" data-p="${pid}" data-kind="take" data-i="0" data-swap="1">${I.reply}Reply to a take</button>`}
+      ${p.today?.length ? `<button class="btn ghost" data-action="story" data-p="${pid}">${I.sun}Today</button>` : ''}
+      <button class="btn ghost" data-action="wingmate" data-p="${pid}">${I.friends}Suggest to a friend</button></div>
+    <h3>Takes</h3>${p.takes.map((t, i) => `<div class="p-take"><p>${esc(t)}</p><button class="act reply-act" data-action="reply" data-p="${pid}" data-kind="take" data-i="${i}" data-swap="1">${I.reply}<span>Reply</span></button></div>`).join('')}
+    <h3>Moments</h3><div class="grid3 p-moments">${p.moments.map((m, i) => `<div class="cell" style="--a:${p.a};--b:${p.b}">${img(scene(m, `${pid}-m${i}`), m.cap)}<span>${esc(m.cap)}</span></div>`).join('')}</div>
+    <h3>Vouched for by friends</h3>${p.vouches.map(v => `<div class="p-vouch"><blockquote>"${esc(v.text)}"</blockquote><p>${v.by}, ${esc(v.rel.toLowerCase())}</p></div>`).join('')}
+  </div>`;
+}
+let replyCtx = null;
+function openReply(pid, kind, i, swap) {
+  const p = P[pid];
+  const text = kind === 'take' ? p.takes[i] : kind === 'poll' ? p.poll.q + ' ' + p.poll.o.join(' or ') + '?' : kind === 'moment' ? p.moments[0].cap : (p.today[i] || p.today[0]).cap;
+  replyCtx = { pid, kind, text };
+  openSheet(`<h2>Reply to ${p.name}</h2><blockquote class="quote">"${esc(text)}"</blockquote>
+    <label for="replyIn" class="sr">Your reply</label><textarea class="field" id="replyIn" maxlength="300" placeholder="Say something real. Specific beats clever."></textarea>
+    <p class="hint">Your reply starts a private chat. ${p.name}'s photo starts frosted and sharpens as you talk.</p>
+    <p class="err" id="replyErr" role="alert"></p>
+    <button class="btn primary wide" data-action="send-reply">Send reply</button>`, { swap });
+  if (isDesk()) setTimeout(() => $('#replyIn')?.focus(), 200);
+}
+function startChatFrom(pid, kind, text, first) {
+  const lab = { take:`You replied to ${P[pid].name}'s take`, today:`You replied to ${P[pid].name}'s Today`, moment:`You replied to ${P[pid].name}'s moment`, poll:`You replied to ${P[pid].name}'s poll` }[kind];
+  if (!S.chats[pid]) { S.chats[pid] = { origin:{ kind, text }, t:now(), unread:0, ri:0, msgs:[] }; S.warmth[pid] = S.warmth[pid] || 0; }
+  else S.chats[pid].msgs.push({ f:'sys', k:'ctx', lab, x:text });
+  S.chats[pid].msgs.push({ f:'me', x:first, w:W(pid) }); S.chats[pid].t = now();
+  save();
+}
+function openCompose(tabName = 'take') {
+  const starters = ['Unpopular opinion: ','Green flag: ','Question: ',"I'm looking for someone who "];
+  openSheet(`<h2>${tabName === 'today' ? 'Add to Today' : 'Post a take'}</h2>
+    <div class="seg" role="tablist" style="margin-bottom:16px"><button role="tab" data-ctab="take" aria-pressed="${tabName === 'take'}">Take</button><button role="tab" data-ctab="today" aria-pressed="${tabName === 'today'}">Today</button></div>
+    <div data-cpane="take" ${tabName !== 'take' ? 'hidden' : ''}>
+      <div class="chips" style="margin-bottom:12px">${starters.map(s => `<button class="chip" data-starter="${esc(s)}">${esc(s.trim())}</button>`).join('')}</div>
+      <label for="takeIn" class="sr">Your take</label><textarea class="field" id="takeIn" maxlength="200" placeholder="Say what you actually think."></textarea>
+      <p class="hint" id="takeCount">200 characters left. People can reply, and every reply starts a chat.</p>
+      <button class="btn primary wide" data-action="post-take">Post take</button>
+    </div>
+    <div data-cpane="today" ${tabName !== 'today' ? 'hidden' : ''}>
+      <div id="todayPrev" class="m-media" style="--a:#323B78;--b:#FF5A8A;border-radius:22px;width:100%;aspect-ratio:3/4;max-height:44dvh;margin-bottom:12px;display:grid;place-items:center;color:#fff">
+        <button class="btn ghost" data-action="pick-today">${I.camera}Choose a photo</button></div>
+      <div class="chips" style="margin-bottom:12px">${[['#323B78','#FF5A8A'],['#FFB45C','#FF5A8A'],['#2F9E8F','#CDE8FF'],['#5B4BDB','#7CC6FF']].map(([a,b], i) => `<button class="chip" data-bg="${a},${b}" aria-label="Colour background ${i + 1}" style="background:linear-gradient(135deg,${a},${b});width:44px;padding:0;border:0"></button>`).join('')}</div>
+      <label for="todayCap" class="sr">Caption</label><input class="field" id="todayCap" maxlength="90" placeholder="What's happening today?">
+      <p class="hint">Disappears after 24 hours. Replies start a chat.</p>
+      <button class="btn primary wide" data-action="post-today">Add to Today</button>
+    </div>`);
+  composeToday = { img:null, a:'#323B78', b:'#FF5A8A' };
+  const sh = $('#sheet');
+  sh.querySelectorAll('[data-ctab]').forEach(b => b.onclick = () => {
+    sh.querySelectorAll('[data-ctab]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    sh.querySelectorAll('[data-cpane]').forEach(p => p.hidden = p.dataset.cpane !== b.dataset.ctab);
+    sh.querySelector('h2').textContent = b.dataset.ctab === 'today' ? 'Add to Today' : 'Post a take';
+  });
+  sh.querySelectorAll('[data-starter]').forEach(b => b.onclick = () => { const t = $('#takeIn'); t.value = b.dataset.starter; t.focus(); t.setSelectionRange(t.value.length, t.value.length); countTake(); });
+  sh.querySelectorAll('[data-bg]').forEach(b => b.onclick = () => { const [a, c] = b.dataset.bg.split(','); composeToday.a = a; composeToday.b = c; composeToday.img = null; paintTodayPrev(); });
+  $('#takeIn').oninput = countTake;
+  if (isDesk() && tabName === 'take') setTimeout(() => $('#takeIn')?.focus(), 200);
+}
+let composeToday = null;
+function countTake() { const t = $('#takeIn'); $('#takeCount').textContent = `${200 - t.value.length} characters left. People can reply, and every reply starts a chat.`; }
+function paintTodayPrev() {
+  const el = $('#todayPrev'); if (!el) return;
+  el.style.setProperty('--a', composeToday.a); el.style.setProperty('--b', composeToday.b);
+  el.innerHTML = composeToday.img ? `<img src="${composeToday.img}" alt="Your photo" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><button class="btn ghost sm" data-action="pick-today" style="position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.4)">Change</button>` : `<button class="btn ghost" data-action="pick-today">${I.camera}Choose a photo</button>`;
+}
+let fileTarget = null;
+$('#fileIn').onchange = async e => {
+  const f = e.target.files[0]; e.target.value = ''; if (!f) return;
+  try {
+    const data = await shrink(f, fileTarget === 'avatar' ? 480 : 1080);
+    if (fileTarget === 'avatar') { S.me.photo = data; save(); render(); toast('Photo added. Others see it frosted until you talk.'); }
+    else { composeToday.img = data; paintTodayPrev(); }
+  } catch { toast("That file couldn't be read. Try a JPG or PNG."); }
+};
+function shrink(file, max) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => { const im = new Image(); im.onload = () => {
+      const k = Math.min(1, max / Math.max(im.width, im.height)); const c = document.createElement('canvas');
+      c.width = Math.round(im.width * k); c.height = Math.round(im.height * k); c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+      res(c.toDataURL('image/jpeg', .78)); }; im.onerror = rej; im.src = r.result; };
+    r.onerror = rej; r.readAsDataURL(file);
+  });
+}
+
+/* =========================================================
+   STORIES (Today)
+   ========================================================= */
+let st = null;
+function storyQueue() { return ORDER.filter(pid => visible(pid) && P[pid].today?.length); }
+function openStory(pid, i = 0) {
+  const items = pid === 'me' ? S.me.today : P[pid].today; if (!items?.length) return;
+  const wasOpen = !!st;
+  st = { pid, i, t0:0, el:0, paused:false, raf:0 };
+  drawStory();
+  $('#story').classList.add('open'); document.body.style.overflow = 'hidden';
+  if (!wasOpen) pushOv('story', hideStory);
+}
+function drawStory() {
+  const { pid, i } = st, me = pid === 'me';
+  const items = me ? S.me.today : P[pid].today, it = items[i];
+  const p = me ? { name:'Your Today', a:it.a || '#323B78', b:it.b || '#FF5A8A' } : P[pid];
+  if (!me) { S.seen[pid] = true; save(); }
+  const media = me ? (it.img ? `<img src="${it.img}" alt="">` : '') : img(scene(it, `${pid}-s${i}`), it.cap);
+  $('#story').innerHTML = `<div class="st-frame" style="--a:${p.a};--b:${p.b}">
+    <div class="st-media">${media}</div>
+    <div class="st-bars">${items.map((_, k) => `<i><b style="width:${k < i ? 100 : 0}%"></b></i>`).join('')}</div>
+    <div class="st-head">${me ? meAva(36) : ava(pid, 36)}<div><span class="nm">${esc(me ? meName() : p.name)}</span> <small>${me ? ago(it.t) : it.ago}</small></div><span class="grow"></span><button class="icon-btn" data-action="close-story" aria-label="Close">${I.close}</button></div>
+    <p class="st-cap">${esc(it.cap)}</p>
+    <button class="st-tap l" data-st="prev" aria-label="Previous"></button><button class="st-tap r" data-st="next" aria-label="Next"></button>
+    ${me ? '' : `<form class="st-reply" id="stReply"><label for="stIn" class="sr">Reply</label><input id="stIn" placeholder="Reply to ${esc(p.name)}'s Today" autocomplete="off" enterkeyhint="send"><button class="send" type="submit" aria-label="Send reply">${I.send}</button></form>`}
+  </div>`;
+  const fr = $('#story .st-frame');
+  fr.querySelectorAll('[data-st]').forEach(b => {
+    let down = 0;
+    b.onpointerdown = () => { down = performance.now(); st.paused = true; };
+    b.onpointerup = () => { st.paused = false; if (performance.now() - down < 250) b.dataset.st === 'next' ? storyNext() : storyPrev(); };
+    b.onpointerleave = () => { st && (st.paused = false); };
+  });
+  const f = $('#stReply');
+  if (f) {
+    const inp = $('#stIn');
+    inp.onfocus = () => st.paused = true; inp.onblur = () => st && (st.paused = false);
+    f.onsubmit = e => { e.preventDefault(); const v = inp.value.trim(); if (!v) return; const cap = it.cap;
+      stopStory(); startChatFrom(pid, 'today', cap, v); openChat(pid, true); queueFirstReply(pid); };
+  }
+  let sy = 0;
+  fr.ontouchstart = e => { sy = e.touches[0].clientY; };
+  fr.ontouchend = e => { if (e.changedTouches[0].clientY - sy > 90 && !e.target.closest('form')) closeOv('story'); };
+  cancelAnimationFrame(st.raf); st.el = 0; st.t0 = performance.now();
+  const bar = fr.querySelectorAll('.st-bars b')[i];
+  const loop = t => {
+    if (!st) return;
+    const dt = t - st.t0; st.t0 = t; if (!st.paused) st.el += dt;
+    const pr = Math.min(1, st.el / 5200); bar.style.width = pr * 100 + '%';
+    if (pr >= 1) return storyNext();
+    st.raf = requestAnimationFrame(loop);
+  };
+  st.raf = requestAnimationFrame(loop);
+}
+function storyNext() {
+  if (!st) return;
+  const items = st.pid === 'me' ? S.me.today : P[st.pid].today;
+  if (st.i < items.length - 1) { st.i++; drawStory(); return; }
+  if (st.pid !== 'me') { const q = storyQueue(), k = q.indexOf(st.pid); if (k > -1 && k < q.length - 1) { st.pid = q[k + 1]; st.i = 0; drawStory(); return; } }
+  closeOv('story');
+}
+function storyPrev() { if (!st) return; if (st.i > 0) { st.i--; drawStory(); } else { st.el = 0; } }
+function stopStory() { if (st) cancelAnimationFrame(st.raf); }
+function hideStory() { stopStory(); st = null; $('#story').classList.remove('open'); document.body.style.overflow = ''; if (S.view === 'home') render(); }
+
+/* =========================================================
+   Overlay history (so phone back buttons close overlays)
+   ========================================================= */
+const ovStack = [];
+function pushOv(name, close) { ovStack.push({ name, close }); history.pushState({ ov:ovStack.length }, ''); }
+function swapOv(name, close) {
+  const top = ovStack.pop(); if (top) top.close();
+  ovStack.push({ name, close });
+  if (!top) history.pushState({ ov:ovStack.length }, '');
+}
+function closeOv(name) { if (ovStack.length && ovStack.at(-1).name === name) history.back(); else { const k = ovStack.findIndex(o => o.name === name); if (k > -1) ovStack.splice(k, 1)[0].close(); } }
+addEventListener('popstate', () => { const o = ovStack.pop(); if (o) o.close(); });
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+function queueFirstReply(pid) {
+  const p = P[pid], c = S.chats[pid];
+  const nw = Math.min(1, Math.round((W(pid) + .2) * 10) / 10), melts = W(pid) < 1;
+  queueReply(pid, melts && nw >= 1 ? p.reveal : p.replies[c.ri++ % p.replies.length], melts ? nw : false, 1500);
+}
+const A = {
+  enter: () => { if (S.me.name) enterApp(); else setStage('onboard'); },
+  'to-landing': () => setStage('landing'),
+  go: el => go(el.dataset.view),
+  profile: el => openSheet(profileHTML(el.dataset.p), { swap: $('#sheet').classList.contains('open') }),
+  reply: el => openReply(el.dataset.p, el.dataset.kind, +el.dataset.i || 0, !!el.dataset.swap && $('#sheet').classList.contains('open')),
+  'send-reply': () => {
+    const v = $('#replyIn').value.trim();
+    if (v.length < 2) { $('#replyErr').textContent = 'Write something first. One honest line is plenty.'; return; }
+    const { pid, kind, text } = replyCtx;
+    hideSheet(); startChatFrom(pid, kind, text, v); openChat(pid, true); queueFirstReply(pid);
+  },
+  spark: el => { const id = el.dataset.id, on = !S.sparked[id]; on ? S.sparked[id] = 1 : delete S.sparked[id]; el.classList.toggle('on', on); el.setAttribute('aria-pressed', on); el.querySelector('span').textContent = +el.dataset.n + (on ? 1 : 0); if (on) el.querySelector('.icon').classList.add('pop'); save(); },
+  heart: el => heartMoment(el.dataset.id, false),
+  poll: el => {
+    if (S.poll !== null) return; S.poll = +el.dataset.o; save();
+    const pl = P.malik.poll, v = pl.v.map((n, i) => n + (S.poll === i ? 1 : 0)), tot = v[0] + v[1];
+    const box = $('#poll'); box.querySelectorAll('.opt').forEach((o, i) => { o.style.setProperty('--pct', (v[i] / tot).toFixed(3)); o.querySelector('b').textContent = Math.round(v[i] / tot * 100) + '%'; o.classList.toggle('mine', i === S.poll); });
+    requestAnimationFrame(() => box.classList.add('voted'));
+    $('#pollNote').textContent = `You and ${v[S.poll] - 1} others picked ${pl.o[S.poll].toLowerCase()}.`;
+  },
+  share: async () => { const url = location.href.split('#')[0]; try { if (navigator.share) await navigator.share({ title:'Ultimate', text:'Break the ice. Literally.', url }); else { await navigator.clipboard.writeText(url); toast('Link copied'); } } catch {} },
+  compose: el => openCompose(el.dataset.tab || 'take'),
+  'close-sheet': () => closeOv('sheet'),
+  'post-take': () => {
+    const v = $('#takeIn').value.trim(); if (v.length < 4) { toast('Write a few words first.'); return; }
+    S.me.takes.unshift({ id:'me-' + now(), x:v, t:now() }); save(); closeOv('sheet');
+    S.view = 'home'; setTimeout(() => { render(); window.scrollTo(0, 0); toast('Take posted'); }, 50);
+  },
+  'pick-today': () => { fileTarget = 'today'; $('#fileIn').click(); },
+  'post-today': () => {
+    const cap = $('#todayCap').value.trim(); if (!cap && !composeToday.img) { toast('Add a photo or a caption first.'); return; }
+    S.me.today.push({ img:composeToday.img, a:composeToday.a, b:composeToday.b, cap:cap || ' ', t:now() }); save(); closeOv('sheet');
+    setTimeout(() => { render(); toast('Added to Today'); }, 50);
+  },
+  story: el => openStory(el.dataset.p, +el.dataset.i || 0),
+  'close-story': () => closeOv('story'),
+  'open-chat': el => { if ($('#sheet').classList.contains('open')) { hideSheet(); openChat(el.dataset.p, true); } else openChat(el.dataset.p); },
+  'close-chat': () => closeOv('convo'),
+  idea: el => { if (S.open) sendMsg(S.open, el.dataset.x); },
+  'nc-vote': el => ncVote(+el.dataset.v),
+  'nc-drop': () => { S.nc.phase = 'drop'; save(); render(); window.scrollTo(0, 0); },
+  'nc-start': el => ncStart(el.dataset.p),
+  'nc-again': () => { S.nc = { phase:'answer', answer:'', idx:0, hearts:[], endsAt:now() + 41 * 60e3 }; save(); render(); },
+  'me-tab': el => { S.meTab = el.dataset.tab; save(); render(); },
+  'set-show': el => { S.me.show = el.dataset.v; save(); render(); toast('Updated who you see'); },
+  'frost-self': () => { S.frostSelf = !S.frostSelf; save(); render(); },
+  'upload-photo': () => { fileTarget = 'avatar'; $('#fileIn').click(); },
+  'ask-vouch': async () => { const t = `Write me a vouch on Ultimate? One honest line about me. ${location.href.split('#')[0]}`; try { if (navigator.share) await navigator.share({ text:t }); else { await navigator.clipboard.writeText(t); toast('Invite copied. Send it to a friend.'); } } catch {} },
+  wingmate: async el => { const p = P[el.dataset.p]; const t = `I think you'd click with ${p.name} on Ultimate.`; try { if (navigator.share) await navigator.share({ text:t, url:location.href.split('#')[0] }); else { await navigator.clipboard.writeText(t); toast('Suggestion copied. Send it to a friend.'); } } catch {} },
+  reset: () => { if (!confirm('Reset the demo? This clears your profile, takes and chats.')) return; try { localStorage.removeItem(KEY); } catch {} S = fresh(); setStage('landing'); },
+};
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-action]'); if (!t) return;
+  const f = A[t.dataset.action]; if (f) { e.preventDefault(); f(t, e); }
+});
+$('#scrim').onclick = () => closeOv('sheet');
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') { if (st) closeOv('story'); else if ($('#sheet').classList.contains('open')) closeOv('sheet'); else if (S.open && !isDesk()) closeOv('convo'); }
+  if (st && e.key === 'ArrowRight') storyNext(); if (st && e.key === 'ArrowLeft') storyPrev();
+});
+
+/* Double-tap a moment to heart it */
+let lastTap = { id:null, t:0 };
+document.addEventListener('click', e => {
+  const m = e.target.closest('[data-tap]'); if (!m) return;
+  const id = m.dataset.tap, t = performance.now();
+  if (lastTap.id === id && t - lastTap.t < 320) { heartMoment(id, true, m); lastTap = { id:null, t:0 }; }
+  else lastTap = { id, t };
+});
+function heartMoment(id, forceOn, media) {
+  const on = forceOn ? true : !S.hearted[id];
+  on ? S.hearted[id] = 1 : delete S.hearted[id]; save();
+  const btn = $(`[data-action="heart"][data-id="${id}"]`);
+  if (btn) { btn.classList.toggle('on', on); btn.setAttribute('aria-pressed', on); btn.querySelector('span').textContent = +btn.dataset.n + (on ? 1 : 0); }
+  if (forceOn && media) { const b = media.querySelector('.burst'); b.classList.remove('go'); void b.offsetWidth; b.classList.add('go'); }
+}
+
+/* ---------- Toast ---------- */
+let toastT;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2400); }
+
+/* ---------- Countdown ---------- */
+function tick() {
+  let left = Math.max(0, (S.nc.endsAt || now()) - now());
+  if (!left && S.nc.phase !== 'drop' && S.stage === 'app') { S.nc.endsAt = now() + 41 * 60e3; left = 41 * 60e3; }
+  const m = Math.floor(left / 6e4), s = Math.floor(left % 6e4 / 1e3);
+  const txt = `${m}:${String(s).padStart(2, '0')}`;
+  $$('[data-countdown]').forEach(el => el.textContent = txt);
+}
+setInterval(tick, 1000);
+
+/* ---------- Mobile keyboard: keep the chat above it ---------- */
+if (window.visualViewport) {
+  const vv = () => { document.documentElement.style.setProperty('--vvh', visualViewport.height + 'px'); document.documentElement.style.setProperty('--vvt', visualViewport.offsetTop + 'px'); const b = $('#msgs'); if (b) b.scrollTop = b.scrollHeight; };
+  visualViewport.addEventListener('resize', vv); visualViewport.addEventListener('scroll', vv); vv();
+}
+matchMedia('(min-width: 900px)').addEventListener('change', () => { if (S.stage === 'app') { if (!isDesk() && S.open) { S.open = null; } render(); } });
+
+/* ---------- Boot ---------- */
+$$('[data-logo]').forEach(el => el.outerHTML = LOGO);
+$$('[data-icon]').forEach(el => el.outerHTML = I[el.dataset.icon]);
+if (!isDesk()) S.open = null;
+if (S.stage === 'onboard') S.stage = 'landing';
+setStage(S.stage === 'app' ? 'app' : 'landing');
+</script>
+</body>
+</html>
